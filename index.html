@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModelForge Pro - Enterprise Data Modeling Platform</title>
+    <title>ModelForge Enterprise | Data Modeling Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,129 +14,86 @@
         }
 
         :root {
-            --primary-green: #10B981;
-            --dark-green: #047857;
-            --light-green: #34D399;
-            --accent-green: #6EE7B7;
-            --forest-green: #065F46;
-            --emerald: #059669;
-            --mint: #A7F3D0;
-            
-            --glass-light: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.8);
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --navy: #0f172a;
+            --slate: #334155;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #0f172a 100%);
+            --gradient-accent: linear-gradient(45deg, #3b82f6, #60a5fa);
+            --gradient-light: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(30, 64, 175, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-green) 35%, var(--primary-green) 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gradient-primary);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
+            color: var(--gray-800);
+            line-height: 1.6;
         }
 
-        /* Static Green Background Pattern */
-        .background-container {
+        /* Professional Background */
+        .background-system {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(6, 95, 70, 0.4) 0%, transparent 60%),
-                radial-gradient(circle at 40% 80%, rgba(52, 211, 153, 0.2) 0%, transparent 40%),
-                linear-gradient(135deg, var(--forest-green) 0%, var(--dark-green) 35%, var(--primary-green) 100%);
+            background: var(--gradient-primary);
         }
 
-        .grid-pattern {
+        .background-pattern {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.05) 49%, rgba(255, 255, 255, 0.05) 51%, transparent 52%);
+            background-size: 400px 400px, 400px 400px, 60px 60px;
         }
 
-        .geometric-shapes {
+        .grid-overlay {
             position: absolute;
             width: 100%;
             height: 100%;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(110, 231, 183, 0.1);
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .shape:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 10%;
-            background: linear-gradient(45deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            right: 15%;
-            background: linear-gradient(135deg, rgba(6, 95, 70, 0.3), rgba(16, 185, 129, 0.2));
-            animation-delay: -7s;
-        }
-
-        .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            left: 30%;
-            background: linear-gradient(225deg, rgba(52, 211, 153, 0.25), rgba(110, 231, 183, 0.2));
-            animation-delay: -14s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        /* Main Layout */
-        .app-container {
-            display: grid;
-            grid-template-areas: 
-                "header header header"
-                "sidebar main analytics"
-                "sidebar main analytics";
-            grid-template-columns: 320px 1fr 300px;
-            grid-template-rows: auto 1fr;
-            min-height: 100vh;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1800px;
-            margin: 0 auto;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         /* Header */
         .header {
-            grid-area: header;
-            background: var(--glass-light);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 16px 32px;
+            box-shadow: var(--glass-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .logo-section {
@@ -145,211 +103,285 @@
         }
 
         .logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
-            border-radius: 16px;
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
             font-weight: 800;
+            font-size: 20px;
             color: white;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
         .logo-text h1 {
-            color: var(--text-primary);
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 4px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px;
         }
 
         .logo-text p {
-            color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 14px;
+            color: var(--gray-600);
             font-weight: 500;
         }
 
-        .header-actions {
+        .header-nav {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
         }
 
-        .action-btn {
-            background: var(--glass-light);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 600;
+        .nav-item {
+            background: transparent;
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
             font-size: 14px;
         }
 
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        .nav-item:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            color: var(--gray-800);
         }
 
-        .action-btn.primary {
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        .nav-item.primary {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .nav-item.primary:hover {
+            background: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 16px;
+            padding-left: 16px;
+            border-left: 1px solid var(--gray-200);
         }
 
         .user-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: linear-gradient(45deg, var(--light-green), var(--accent-green));
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-accent);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--forest-green);
-            font-weight: 700;
-            margin-left: 8px;
-            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            display: grid;
+            grid-template-columns: 320px 1fr 280px;
+            gap: 24px;
+            min-height: calc(100vh - 120px);
         }
 
         /* Sidebar */
         .sidebar {
-            grid-area: sidebar;
-            background: var(--glass-light);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
+            box-shadow: var(--glass-shadow);
+            height: fit-content;
         }
 
         .sidebar-section {
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
-        .sidebar-section h3 {
-            color: var(--text-primary);
-            font-size: 18px;
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 16px;
             font-weight: 700;
+            color: var(--navy);
             margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .model-list {
+        .section-title i {
+            color: var(--primary-blue);
+        }
+
+        /* Model Items */
+        .model-grid {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .model-item {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .model-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
             border-radius: 12px;
             padding: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
         }
 
-        .model-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(4px);
+        .model-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+            transform: translateY(-1px);
         }
 
-        .model-item.active {
-            background: linear-gradient(45deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.2));
-            border-color: var(--accent-green);
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        .model-card.active {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
+        }
+
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
 
         .model-name {
-            color: var(--text-primary);
-            font-weight: 600;
             font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .model-type {
-            color: var(--text-secondary);
-            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.3;
         }
 
         .model-status {
-            position: absolute;
-            top: 12px;
-            right: 12px;
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--light-green);
+            background: #10b981;
+            flex-shrink: 0;
         }
 
-        .add-model-btn {
+        .model-meta {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+
+        .model-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        .create-model-btn {
             width: 100%;
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
-            border: none;
+            background: var(--primary-blue);
             color: white;
-            padding: 16px;
-            border-radius: 12px;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin-top: 12px;
             font-size: 14px;
         }
 
-        .add-model-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+        .create-model-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
         }
 
-        /* Tools Section */
+        /* Tools Grid */
         .tools-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .tool-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text-primary);
-            padding: 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .tool-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 12px;
             text-align: center;
-            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.1);
+        }
+
+        .tool-card.active {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+        }
+
+        .tool-icon {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .tool-name {
+            font-size: 12px;
             font-weight: 500;
-        }
-
-        .tool-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .tool-btn.active {
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
         }
 
         /* Info Panels */
         .info-panel {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
             padding: 16px;
-            margin-top: 12px;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 8px;
         }
 
@@ -358,83 +390,86 @@
         }
 
         .info-label {
-            color: var(--text-primary);
             font-size: 12px;
+            color: var(--gray-600);
         }
 
         .info-value {
-            color: var(--light-green);
             font-size: 12px;
             font-weight: 600;
+            color: var(--primary-blue);
         }
 
-        .legend-btn {
-            width: 100%;
-            margin-top: 8px;
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            color: var(--text-primary);
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .info-value.success {
+            color: #10b981;
         }
 
-        .legend-btn:hover {
-            background: rgba(16, 185, 129, 0.3);
+        .info-value.warning {
+            color: #f59e0b;
         }
 
         /* Main Canvas */
-        .main-canvas {
-            grid-area: main;
-            background: var(--glass-light);
+        .canvas-container {
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            position: relative;
+            border-radius: 16px;
+            box-shadow: var(--glass-shadow);
+            display: flex;
+            flex-direction: column;
         }
 
         .canvas-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-200);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
         }
 
         .canvas-title {
-            color: var(--text-primary);
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
+            color: var(--navy);
         }
 
         .canvas-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .canvas-btn {
-            background: var(--glass-light);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            padding: 10px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .canvas-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--gray-300);
+            color: var(--gray-800);
+        }
+
+        .canvas-workspace {
+            flex: 1;
+            padding: 24px;
+            min-height: 500px;
+            position: relative;
         }
 
         .modeling-area {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            min-height: 500px;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(30, 64, 175, 0.03) 49%, rgba(30, 64, 175, 0.03) 51%, transparent 52%),
+                var(--gray-50);
+            background-size: 20px 20px;
+            border: 2px dashed var(--gray-300);
+            border-radius: 12px;
             position: relative;
             overflow: hidden;
         }
@@ -442,45 +477,48 @@
         /* Entity Components */
         .entity {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
             border-radius: 12px;
-            min-width: 220px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 240px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             cursor: move;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
         }
 
         .entity:hover {
-            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
         }
 
         .entity.selected {
-            box-shadow: 0 0 0 3px var(--accent-green);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
 
         .entity-header {
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            background: var(--gradient-accent);
             color: white;
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-radius: 12px 12px 0 0;
-            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 14px;
         }
 
         .entity-body {
-            padding: 16px 18px;
+            padding: 16px;
         }
 
         .entity-field {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 13px;
         }
 
         .entity-field:last-child {
@@ -488,128 +526,126 @@
         }
 
         .field-name {
-            font-weight: 600;
-            color: #2d3748;
-            font-size: 14px;
+            color: var(--navy);
+            font-weight: 500;
         }
 
-        .field-type {
-            color: #4a5568;
-            font-size: 12px;
-            background: rgba(16, 185, 129, 0.1);
-            padding: 4px 8px;
-            border-radius: 6px;
+        .field-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .field-key {
-            color: var(--primary-green);
+            background: var(--primary-blue);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
             font-size: 10px;
-            font-weight: 700;
-            margin-right: 6px;
+            font-weight: 600;
         }
 
-        /* Connection Lines */
+        .field-type {
+            color: var(--gray-600);
+            font-size: 11px;
+            background: var(--gray-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Connections */
         .connection {
             position: absolute;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
+            height: 2px;
+            background: var(--gradient-accent);
             z-index: 1;
-            border-radius: 2px;
+            border-radius: 1px;
         }
 
         .connection-label {
             position: absolute;
-            top: -22px;
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 600;
-            color: var(--forest-green);
-            border: 1px solid var(--accent-green);
+            color: var(--gray-600);
+            white-space: nowrap;
         }
 
         /* Analytics Panel */
-        .analytics {
-            grid-area: analytics;
-            background: var(--glass-light);
+        .analytics-panel {
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--glass-shadow);
+            height: fit-content;
         }
 
         .analytics-title {
-            color: var(--text-primary);
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
+            color: var(--navy);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .analytics-grid {
+        .analytics-title i {
+            color: var(--primary-blue);
+        }
+
+        .metrics-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
         }
 
         .metric-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
             padding: 16px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .metric-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.1);
         }
 
         .metric-value {
-            color: var(--text-primary);
             font-size: 24px;
             font-weight: 800;
+            color: var(--navy);
             margin-bottom: 4px;
         }
 
         .metric-label {
-            color: var(--text-secondary);
             font-size: 12px;
-            font-weight: 500;
+            color: var(--gray-600);
+            margin-bottom: 4px;
         }
 
         .metric-trend {
-            color: var(--light-green);
             font-size: 11px;
             font-weight: 600;
-            margin-top: 4px;
         }
 
-        /* Status Indicators */
-        .collaboration-indicator {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(16, 185, 129, 0.9);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-            z-index: 1000;
+        .metric-trend.up {
+            color: #10b981;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
+        .metric-trend.down {
+            color: #f59e0b;
         }
 
         /* AI Assistant */
@@ -617,16 +653,15 @@
             position: fixed;
             bottom: 24px;
             right: 24px;
-            width: 320px;
-            background: var(--glass-light);
+            width: 360px;
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--glass-shadow);
             transform: translateY(100%);
-            transition: transform 0.4s ease;
-            z-index: 1000;
+            transition: transform 0.3s ease;
+            z-index: 200;
         }
 
         .ai-assistant.active {
@@ -639,48 +674,58 @@
             right: 24px;
             width: 56px;
             height: 56px;
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            background: var(--primary-blue);
             border: none;
             border-radius: 50%;
             color: white;
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 4px 16px rgba(30, 64, 175, 0.3);
             transition: all 0.3s ease;
-            z-index: 1001;
+            z-index: 201;
         }
 
         .ai-toggle:hover {
-            transform: scale(1.1);
+            background: var(--dark-blue);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
         }
 
         .ai-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid var(--gray-200);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
         }
 
         .ai-title {
-            color: var(--text-primary);
-            font-weight: 700;
             font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .ai-content {
+            padding: 20px 24px;
         }
 
         .ai-input {
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
             padding: 12px;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            resize: none;
+            color: var(--gray-800);
             font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            margin-bottom: 16px;
         }
 
-        .ai-input::placeholder {
-            color: var(--text-secondary);
+        .ai-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
 
         .ai-suggestions {
@@ -690,69 +735,126 @@
             margin-bottom: 16px;
         }
 
-        .suggestion-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border: none;
+        .suggestion-chip {
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-700);
             padding: 6px 12px;
-            border-radius: 10px;
+            border-radius: 16px;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
-        .suggestion-tag:hover {
-            background: rgba(16, 185, 129, 0.3);
+        .suggestion-chip:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
         }
 
         .ai-generate-btn {
             width: 100%;
-            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            background: var(--primary-blue);
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .ai-generate-btn:hover {
+            background: var(--dark-blue);
             transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            z-index: 300;
+        }
+
+        .collaboration-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-700);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .collaboration-indicator i {
+            color: var(--primary-blue);
+            margin-right: 6px;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 24px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            z-index: 300;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.success {
+            border-left: 4px solid #10b981;
+        }
+
+        .notification.warning {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .notification.info {
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .notification.show {
+            transform: translateX(0);
         }
 
         /* Responsive Design */
-        @media (max-width: 1400px) {
-            .app-container {
-                grid-template-areas: 
-                    "header header"
-                    "sidebar main"
-                    "analytics analytics";
-                grid-template-columns: 320px 1fr;
-                grid-template-rows: auto 1fr auto;
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 280px 1fr;
+                gap: 20px;
+            }
+            
+            .analytics-panel {
+                grid-column: 1 / -1;
+                margin-top: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .app-container {
-                grid-template-areas: 
-                    "header"
-                    "sidebar"
-                    "main"
-                    "analytics";
+            .main-container {
                 grid-template-columns: 1fr;
-                padding: 12px;
-                gap: 12px;
-            }
-            
-            .header {
                 padding: 16px 20px;
+                gap: 16px;
             }
             
-            .header-actions {
-                flex-wrap: wrap;
-                gap: 8px;
+            .header-content {
+                padding: 0 20px;
             }
             
             .ai-assistant {
@@ -761,8 +863,8 @@
             }
         }
 
-        /* Success animations */
-        @keyframes slideIn {
+        /* Animations */
+        @keyframes slideInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -773,349 +875,520 @@
             }
         }
 
-        .app-container > * {
-            animation: slideIn 0.6s ease-out forwards;
+        .animate-in {
+            animation: slideInUp 0.4s ease-out forwards;
+        }
+
+        /* Loading States */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Static Green Background -->
-    <div class="background-container">
-        <div class="grid-pattern"></div>
-        <div class="geometric-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
+    <!-- Background System -->
+    <div class="background-system">
+        <div class="background-pattern"></div>
+        <div class="grid-overlay"></div>
     </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar"></div>
 
     <!-- Collaboration Indicator -->
     <div class="collaboration-indicator">
-        <i class="fas fa-users"></i> 4 users collaborating
+        <i class="fas fa-users"></i>
+        <span id="collaborationCount">4 analysts collaborating</span>
     </div>
 
-    <!-- Main App Container -->
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
             <div class="logo-section">
                 <div class="logo">MF</div>
                 <div class="logo-text">
-                    <h1>ModelForge</h1>
-                    <p>Enterprise Data Modeling Platform</p>
+                    <h1>ModelForge Enterprise</h1>
+                    <p>Data Modeling & Risk Analytics Platform</p>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="action-btn">
+            <nav class="header-nav">
+                <button class="nav-item">
                     <i class="fas fa-database"></i> Data Curation
                 </button>
-                <button class="action-btn">
-                    <i class="fab fa-github"></i> FINOS Legend
+                <button class="nav-item">
+                    <i class="fas fa-cogs"></i> Automation
                 </button>
-                <button class="action-btn">
-                    <i class="fas fa-download"></i> Export DSL
+                <button class="nav-item">
+                    <i class="fab fa-github"></i> Legend Contrib
                 </button>
-                <button class="action-btn primary">
-                    <i class="fab fa-aws"></i> Deploy AWS
+                <button class="nav-item">
+                    <i class="fas fa-users"></i> Consumers
                 </button>
+                <button class="nav-item">
+                    <i class="fas fa-cloud"></i> Cloud Tech
+                </button>
+                <button class="nav-item primary">
+                    <i class="fab fa-aws"></i> Deploy
+                </button>
+            </nav>
+            <div class="user-profile">
                 <div class="user-avatar">JS</div>
+                <div class="user-info">
+                    <div class="user-name">John Smith</div>
+                    <div class="user-role">Senior Analyst</div>
+                </div>
             </div>
-        </header>
+        </div>
+    </header>
 
+    <!-- Main Container -->
+    <div class="main-container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Models Section -->
+            <!-- Data Models Section -->
             <div class="sidebar-section">
-                <h3><i class="fas fa-database"></i> Data Models</h3>
-                <div class="model-list">
-                    <div class="model-item active">
-                        <div class="model-status"></div>
-                        <div class="model-name">Risk Management System</div>
-                        <div class="model-type">Quantitative Risk • 15 entities</div>
+                <h3 class="section-title">
+                    <i class="fas fa-project-diagram"></i>
+                    Data Models
+                </h3>
+                <div class="model-grid">
+                    <div class="model-card active">
+                        <div class="model-header">
+                            <div class="model-name">Credit Risk Assessment Model</div>
+                            <div class="model-status"></div>
+                        </div>
+                        <div class="model-meta">Quantitative Risk • Production</div>
+                        <div class="model-stats">
+                            <span>18 entities</span>
+                            <span>•</span>
+                            <span>Last updated 2h ago</span>
+                        </div>
                     </div>
-                    <div class="model-item">
-                        <div class="model-status" style="background: #fbbf24;"></div>
-                        <div class="model-name">Trading Platform Core</div>
-                        <div class="model-type">Trading Domain • 12 entities</div>
+                    <div class="model-card">
+                        <div class="model-header">
+                            <div class="model-name">Fixed Income Trading Platform</div>
+                            <div class="model-status" style="background: #f59e0b;"></div>
+                        </div>
+                        <div class="model-meta">Trading Systems • Staging</div>
+                        <div class="model-stats">
+                            <span>24 entities</span>
+                            <span>•</span>
+                            <span>Updated 4h ago</span>
+                        </div>
                     </div>
-                    <div class="model-item">
-                        <div class="model-status" style="background: #f87171;"></div>
-                        <div class="model-name">Compliance Monitoring</div>
-                        <div class="model-type">Regulatory • 18 entities</div>
+                    <div class="model-card">
+                        <div class="model-header">
+                            <div class="model-name">Regulatory Compliance Framework</div>
+                            <div class="model-status" style="background: #ef4444;"></div>
+                        </div>
+                        <div class="model-meta">Compliance • Development</div>
+                        <div class="model-stats">
+                            <span>31 entities</span>
+                            <span>•</span>
+                            <span>Updated 1d ago</span>
+                        </div>
                     </div>
-                    <div class="model-item">
-                        <div class="model-status"></div>
-                        <div class="model-name">Market Data Management</div>
-                        <div class="model-type">Market Data • 9 entities</div>
-                    </div>
-                    <div class="model-item">
-                        <div class="model-status"></div>
-                        <div class="model-name">Portfolio Analytics</div>
-                        <div class="model-type">Investment • 11 entities</div>
+                    <div class="model-card">
+                        <div class="model-header">
+                            <div class="model-name">Market Data Aggregation</div>
+                            <div class="model-status"></div>
+                        </div>
+                        <div class="model-meta">Market Data • Production</div>
+                        <div class="model-stats">
+                            <span>12 entities</span>
+                            <span>•</span>
+                            <span>Updated 6h ago</span>
+                        </div>
                     </div>
                 </div>
-                <button class="add-model-btn">
-                    <i class="fas fa-plus"></i> Create New Model
-                </button>
-                
-                <!-- Quick Demo Button -->
-                <button class="add-model-btn" style="background: linear-gradient(45deg, #059669, #10B981); margin-top: 8px;" onclick="runQuickDemo()">
-                    <i class="fas fa-play"></i> Try Quick Demo
+                <button class="create-model-btn">
+                    <i class="fas fa-plus"></i> New Model
                 </button>
             </div>
 
-            <!-- Tools Section -->
+            <!-- Modeling Tools -->
             <div class="sidebar-section">
-                <h3><i class="fas fa-tools"></i> Modeling Tools</h3>
+                <h3 class="section-title">
+                    <i class="fas fa-tools"></i>
+                    Modeling Tools
+                </h3>
                 <div class="tools-grid">
-                    <button class="tool-btn active">
-                        <i class="fas fa-mouse-pointer"></i><br>Select
-                    </button>
-                    <button class="tool-btn">
-                        <i class="fas fa-cube"></i><br>Entity
-                    </button>
-                    <button class="tool-btn">
-                        <i class="fas fa-link"></i><br>Relation
-                    </button>
-                    <button class="tool-btn">
-                        <i class="fas fa-check-circle"></i><br>Validate
-                    </button>
+                    <div class="tool-card active">
+                        <div class="tool-icon"><i class="fas fa-mouse-pointer"></i></div>
+                        <div class="tool-name">Select</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-cube"></i></div>
+                        <div class="tool-name">Entity</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-link"></i></div>
+                        <div class="tool-name">Relation</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="tool-name">Validate</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- FINOS Legend Integration -->
+            <!-- FINOS Legend Integration - Enhanced -->
             <div class="sidebar-section">
-                <h3><i class="fas fa-link"></i> FINOS Legend</h3>
+                <h3 class="section-title">
+                    <i class="fab fa-github"></i>
+                    FINOS Legend Integration
+                </h3>
                 <div class="info-panel">
                     <div class="info-row">
-                        <span class="info-label"><i class="fas fa-check-circle"></i> Legend Compatible</span>
+                        <span class="info-label">Integration Status</span>
+                        <span class="info-value success">✓ Connected</span>
                     </div>
-                    <div style="color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 8px;">
-                        Model exports to Legend DSL<br>
-                        Contributing to github.com/finos/legend
+                    <div class="info-row">
+                        <span class="info-label">Last Sync</span>
+                        <span class="info-value">12 min ago</span>
                     </div>
-                    <button class="legend-btn">
-                        <i class="fas fa-external-link-alt"></i> View Legend Integration
-                    </button>
+                    <div class="info-row">
+                        <span class="info-label">Models Published</span>
+                        <span class="info-value">47</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Open Source Contributions</span>
+                        <span class="info-value success">23 PRs</span>
+                    </div>
+                </div>
+                <button style="width: 100%; margin-top: 8px; background: var(--primary-blue); color: white; border: none; padding: 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                    <i class="fab fa-github"></i> Contribute to Legend
+                </button>
+                <button style="width: 100%; margin-top: 4px; background: rgba(30, 64, 175, 0.1); border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                    <i class="fas fa-code"></i> Legend Language DSL
+                </button>
+            </div>
+
+            <!-- Data Management & Automation -->
+            <div class="sidebar-section">
+                <h3 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    Process Automation
+                </h3>
+                <div class="info-panel">
+                    <div class="info-row">
+                        <span class="info-label">Automated Processes</span>
+                        <span class="info-value success">156</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Efficiency Gains</span>
+                        <span class="info-value success">+34%</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Data Pipeline Health</span>
+                        <span class="info-value success">✓ Optimal</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Consumer Satisfaction</span>
+                        <span class="info-value success">98.7%</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Data Quality -->
+            <!-- Multi-dimensional Data Quality -->
             <div class="sidebar-section">
-                <h3><i class="fas fa-shield-alt"></i> Data Quality</h3>
+                <h3 class="section-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Multi-dimensional Data Quality
+                </h3>
                 <div class="info-panel">
                     <div class="info-row">
-                        <span class="info-label">Traceability</span>
-                        <span class="info-value">✓ 100%</span>
+                        <span class="info-label">Traceability Score</span>
+                        <span class="info-value success">100%</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Security</span>
-                        <span class="info-value">✓ Compliant</span>
+                        <span class="info-label">Security Compliance</span>
+                        <span class="info-value success">✓ SOX/GDPR</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Performance</span>
-                        <span class="info-value" style="color: #fbbf24;">⚡ 8.7ms</span>
+                        <span class="info-label">Performance Latency</span>
+                        <span class="info-value warning">7.2ms avg</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Correctness</span>
-                        <span class="info-value">✓ 99.9%</span>
+                        <span class="info-label">Data Correctness</span>
+                        <span class="info-value success">99.94%</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Supply Chain Health</span>
+                        <span class="info-value success">✓ Optimal</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Demand Forecasting</span>
+                        <span class="info-value success">96.8%</span>
                     </div>
                 </div>
+                <button style="width: 100%; margin-top: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981; padding: 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                    <i class="fas fa-chart-line"></i> View Quality Dashboard
+                </button>
             </div>
         </aside>
 
         <!-- Main Canvas -->
-        <main class="main-canvas">
+        <main class="canvas-container">
             <div class="canvas-header">
-                <h2 class="canvas-title">Risk Management System</h2>
+                <h2 class="canvas-title">Credit Risk Assessment Model</h2>
                 <div class="canvas-actions">
                     <button class="canvas-btn">
                         <i class="fas fa-save"></i> Save
                     </button>
                     <button class="canvas-btn">
+                        <i class="fas fa-history"></i> Version
+                    </button>
+                    <button class="canvas-btn">
                         <i class="fas fa-share-alt"></i> Share
                     </button>
                     <button class="canvas-btn">
-                        <i class="fas fa-eye"></i> Preview
+                        <i class="fas fa-code"></i> Generate Code
                     </button>
                 </div>
             </div>
+            <div class="canvas-workspace">
+                <div class="modeling-area">
+                    <!-- Borrower Entity -->
+                    <div class="entity" style="top: 50px; left: 50px;">
+                        <div class="entity-header">
+                            <span>Borrower</span>
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="entity-body">
+                            <div class="entity-field">
+                                <span class="field-name">borrowerId</span>
+                                <div class="field-info">
+                                    <span class="field-key">PK</span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">corporateId</span>
+                                <div class="field-info">
+                                    <span class="field-type">String(20)</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">legalName</span>
+                                <div class="field-info">
+                                    <span class="field-type">String(255)</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">creditRating</span>
+                                <div class="field-info">
+                                    <span class="field-type">CreditRating</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">sector</span>
+                                <div class="field-info">
+                                    <span class="field-type">IndustrySector</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">jurisdiction</span>
+                                <div class="field-info">
+                                    <span class="field-type">String(3)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="modeling-area">
-                <!-- Position Entity -->
-                <div class="entity" style="top: 40px; left: 40px;">
-                    <div class="entity-header">
-                        <span>Position</span>
-                        <i class="fas fa-chart-line"></i>
+                    <!-- CreditExposure Entity -->
+                    <div class="entity" style="top: 50px; right: 50px;">
+                        <div class="entity-header">
+                            <span>CreditExposure</span>
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="entity-body">
+                            <div class="entity-field">
+                                <span class="field-name">exposureId</span>
+                                <div class="field-info">
+                                    <span class="field-key">PK</span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">borrowerId</span>
+                                <div class="field-info">
+                                    <span class="field-key">FK</span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">facilityType</span>
+                                <div class="field-info">
+                                    <span class="field-type">FacilityType</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">commitmentAmount</span>
+                                <div class="field-info">
+                                    <span class="field-type">BigDecimal</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">outstandingAmount</span>
+                                <div class="field-info">
+                                    <span class="field-type">BigDecimal</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">maturityDate</span>
+                                <div class="field-info">
+                                    <span class="field-type">LocalDate</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="entity-body">
-                        <div class="entity-field">
-                            <span class="field-name">positionId</span>
-                            <div>
-                                <span class="field-key">PK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">instrumentId</span>
-                            <div>
-                                <span class="field-key">FK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">quantity</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">marketValue</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">portfolioId</span>
-                            <div>
-                                <span class="field-key">FK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">lastUpdated</span>
-                            <span class="field-type">DateTime</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- RiskMetric Entity -->
-                <div class="entity" style="top: 40px; right: 40px;">
-                    <div class="entity-header">
-                        <span>RiskMetric</span>
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <div class="entity-body">
-                        <div class="entity-field">
-                            <span class="field-name">riskMetricId</span>
-                            <div>
-                                <span class="field-key">PK</span>
-                                <span class="field-type">UUID</span>
+                    <!-- RiskMetrics Entity -->
+                    <div class="entity" style="bottom: 80px; left: 50%; transform: translateX(-50%);">
+                        <div class="entity-header">
+                            <span>RiskMetrics</span>
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="entity-body">
+                            <div class="entity-field">
+                                <span class="field-name">riskMetricId</span>
+                                <div class="field-info">
+                                    <span class="field-key">PK</span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">exposureId</span>
+                                <div class="field-info">
+                                    <span class="field-key">FK</span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">probabilityOfDefault</span>
+                                <div class="field-info">
+                                    <span class="field-type">BigDecimal</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">lossGivenDefault</span>
+                                <div class="field-info">
+                                    <span class="field-type">BigDecimal</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">expectedLoss</span>
+                                <div class="field-info">
+                                    <span class="field-type">BigDecimal</span>
+                                </div>
+                            </div>
+                            <div class="entity-field">
+                                <span class="field-name">calculationDate</span>
+                                <div class="field-info">
+                                    <span class="field-type">LocalDateTime</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="entity-field">
-                            <span class="field-name">positionId</span>
-                            <div>
-                                <span class="field-key">FK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">var95</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">var99</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">expectedShortfall</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">calculationDate</span>
-                            <span class="field-type">Date</span>
-                        </div>
                     </div>
-                </div>
 
-                <!-- StressTest Entity -->
-                <div class="entity" style="bottom: 80px; left: 50%; transform: translateX(-50%);">
-                    <div class="entity-header">
-                        <span>StressTest</span>
-                        <i class="fas fa-heartbeat"></i>
+                    <!-- Relationship Lines -->
+                    <div class="connection" style="top: 180px; left: 290px; width: 220px;">
+                        <div class="connection-label">1:N Credit Facilities</div>
                     </div>
-                    <div class="entity-body">
-                        <div class="entity-field">
-                            <span class="field-name">stressTestId</span>
-                            <div>
-                                <span class="field-key">PK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">scenarioId</span>
-                            <div>
-                                <span class="field-key">FK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">positionId</span>
-                            <div>
-                                <span class="field-key">FK</span>
-                                <span class="field-type">UUID</span>
-                            </div>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">stressedValue</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">pnlImpact</span>
-                            <span class="field-type">BigDecimal</span>
-                        </div>
-                        <div class="entity-field">
-                            <span class="field-name">runDate</span>
-                            <span class="field-type">DateTime</span>
-                        </div>
+                    <div class="connection" style="top: 300px; left: 420px; width: 160px; transform: rotate(45deg);">
+                        <div class="connection-label">1:N Risk Calculation</div>
                     </div>
-                </div>
-
-                <!-- Connection Lines -->
-                <div class="connection" style="top: 140px; left: 260px; width: 280px; transform: rotate(3deg);">
-                    <div class="connection-label">1:N Risk Calculation</div>
-                </div>
-                <div class="connection" style="top: 280px; left: 350px; width: 180px; transform: rotate(50deg);">
-                    <div class="connection-label">1:N Stress Testing</div>
                 </div>
             </div>
         </main>
 
         <!-- Analytics Panel -->
-        <section class="analytics">
+        <aside class="analytics-panel">
             <h3 class="analytics-title">
-                <i class="fas fa-chart-bar"></i> Live Analytics
+                <i class="fas fa-chart-line"></i>
+                Data Management Analytics
             </h3>
-            <div class="analytics-grid">
+            <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-value">2.1TB</div>
-                    <div class="metric-label">Data Processed</div>
-                    <div class="metric-trend">↗ +18% efficiency</div>
+                    <div class="metric-value">$2.4T</div>
+                    <div class="metric-label">Assets Under Model</div>
+                    <div class="metric-trend up">↗ +8.2% QoQ</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">8.7ms</div>
-                    <div class="metric-label">Query Latency</div>
-                    <div class="metric-trend">↘ -15% optimized</div>
+                    <div class="metric-value">47</div>
+                    <div class="metric-label">Production Models</div>
+                    <div class="metric-trend up">↗ +5 this quarter</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">48</div>
-                    <div class="metric-label">Data Models</div>
-                    <div class="metric-trend">↗ +5 this week</div>
+                    <div class="metric-value">7.2ms</div>
+                    <div class="metric-label">Avg Query Latency</div>
+                    <div class="metric-trend down">↘ -12% optimized</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.94%</div>
+                    <div class="metric-label">Data Correctness</div>
+                    <div class="metric-trend up">↗ +0.08%</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-value">156</div>
-                    <div class="metric-label">Cloud Deployments</div>
-                    <div class="metric-trend">↗ +12% adoption</div>
+                    <div class="metric-label">Automated Processes</div>
+                    <div class="metric-trend up">↗ +34% efficiency</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">99.9%</div>
-                    <div class="metric-label">Data Quality</div>
-                    <div class="metric-trend">↗ +0.1% accuracy</div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Cloud Adoption</div>
+                    <div class="metric-trend up">✓ AWS Migration</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-value">23</div>
-                    <div class="metric-label">Contributors</div>
-                    <div class="metric-trend">↗ Open Source</div>
+                    <div class="metric-label">Legend Contributions</div>
+                    <div class="metric-trend up">↗ Open Source</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">98.7%</div>
+                    <div class="metric-label">Consumer Satisfaction</div>
+                    <div class="metric-trend up">↗ Data Quality</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">5.2PB</div>
+                    <div class="metric-label">Data Warehoused</div>
+                    <div class="metric-trend up">↗ +23% growth</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">SOX Compliance</div>
+                    <div class="metric-trend up">✓ Audited</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">847</div>
+                    <div class="metric-label">Data Consumers</div>
+                    <div class="metric-trend up">↗ +67 this month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,234</div>
+                    <div class="metric-label">Data Producers</div>
+                    <div class="metric-trend up">↗ Integrated</div>
                 </div>
             </div>
-        </section>
+        </aside>
     </div>
 
     <!-- AI Assistant -->
@@ -1128,863 +1401,580 @@
             <div class="ai-title">
                 <i class="fas fa-brain"></i> AI Model Assistant
             </div>
-            <button onclick="toggleAI()" style="background: none; border: none; color: white; cursor: pointer;">
+            <button onclick="toggleAI()" style="background: none; border: none; color: var(--gray-600); cursor: pointer;">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <textarea class="ai-input" placeholder="Describe your quantitative model: 'Create a Risk Assessment model with Position, Trade, and RiskMetric entities'..." rows="3"></textarea>
-        <div class="ai-suggestions">
-            <button class="suggestion-tag">Risk Models</button>
-            <button class="suggestion-tag">Trading Systems</button>
-            <button class="suggestion-tag">Compliance</button>
-            <button class="suggestion-tag">Market Data</button>
+        <div class="ai-content">
+            <textarea class="ai-input" placeholder="Describe your data management requirement: 'Create a comprehensive data curation pipeline with automated quality checks, multi-dimensional analysis, and consumer/producer integration for modern data warehousing'..." rows="4"></textarea>
+            <div class="ai-suggestions">
+                <button class="suggestion-chip">Data Curation Pipeline</button>
+                <button class="suggestion-chip">Process Automation</button>
+                <button class="suggestion-chip">Cloud Data Warehouse</button>
+                <button class="suggestion-chip">Consumer Integration</button>
+                <button class="suggestion-chip">Quality Traceability</button>
+                <button class="suggestion-chip">Legend DSL Export</button>
+                <button class="suggestion-chip">Multi-dimensional Data</button>
+                <button class="suggestion-chip">Supply Chain Model</button>
+            </div>
+            <button class="ai-generate-btn">
+                <i class="fas fa-magic"></i> Generate Data Management Solution
+            </button>
         </div>
-        <button class="ai-generate-btn">
-            <i class="fas fa-magic"></i> Generate Model
-        </button>
     </div>
 
     <script>
-        // Application State
-        let appState = {
-            isDragging: false,
-            currentEntity: null,
-            offset: { x: 0, y: 0 },
-            selectedTool: 'select',
-            activeModel: 'Risk Management System'
-        };
+        // Professional Application State
+        const ModelForgeApp = {
+            state: {
+                isDragging: false,
+                currentEntity: null,
+                offset: { x: 0, y: 0 },
+                selectedTool: 'select',
+                activeModel: 'Credit Risk Assessment Model',
+                collaborators: 4
+            },
 
-        // Initialize Application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeDragAndDrop();
-            initializeModelManagement();
-            initializeToolSelection();
-            initializeAIAssistant();
-            initializeHeaderActions();
-            initializeCanvasActions();
-            startRealTimeUpdates();
-            showWelcomeTutorial();
-        });
+            // Initialize Application
+            init() {
+                this.initializeDragAndDrop();
+                this.initializeModelManagement();
+                this.initializeToolSelection();
+                this.initializeAIAssistant();
+                this.initializeHeaderActions();
+                this.initializeCanvasActions();
+                this.startRealTimeUpdates();
+                this.showWelcomeMessage();
+            },
 
-        // Welcome Tutorial
-        function showWelcomeTutorial() {
-            setTimeout(() => {
-                showNotification('👋 Welcome to ModelForge! Try these features:', 'info');
-                
-                setTimeout(() => {
-                    showNotification('1️⃣ Click "Create New Model" to add a new data model', 'info');
-                }, 2000);
-                
-                setTimeout(() => {
-                    showNotification('2️⃣ Select "Entity" tool and click on canvas to create entities', 'info');
-                }, 4000);
-                
-                setTimeout(() => {
-                    showNotification('3️⃣ Use "Relation" tool to connect entities together', 'info');
-                }, 6000);
-                
-                setTimeout(() => {
-                    showNotification('4️⃣ Switch to "Select" tool to drag entities around', 'info');
-                }, 8000);
-                
-                setTimeout(() => {
-                    showNotification('🚀 Click AI Assistant (robot icon) for smart model generation!', 'info');
-                }, 10000);
-            }, 1000);
-        }
+            // Enhanced Drag and Drop
+            initializeDragAndDrop() {
+                document.querySelectorAll('.entity').forEach(entity => {
+                    entity.addEventListener('mousedown', this.handleEntityMouseDown.bind(this));
+                    entity.addEventListener('click', this.handleEntityClick.bind(this));
+                });
 
-        // Drag and Drop System
-        function initializeDragAndDrop() {
-            // Re-attach drag handlers to all entities (including new ones)
-            document.querySelectorAll('.entity').forEach(entity => {
-                entity.removeEventListener('mousedown', startDrag); // Remove existing listeners
-                entity.removeEventListener('click', selectEntity);
-                entity.addEventListener('mousedown', startDrag);
-                entity.addEventListener('click', selectEntity);
-            });
+                document.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                document.addEventListener('mouseup', this.handleMouseUp.bind(this));
+            },
 
-            function startDrag(e) {
-                if (appState.selectedTool !== 'select') return;
+            handleEntityMouseDown(e) {
+                if (this.state.selectedTool !== 'select') return;
                 
-                appState.isDragging = true;
-                appState.currentEntity = e.currentTarget;
+                this.state.isDragging = true;
+                this.state.currentEntity = e.currentTarget;
                 
                 const rect = e.currentTarget.getBoundingClientRect();
-                appState.offset.x = e.clientX - rect.left;
-                appState.offset.y = e.clientY - rect.top;
+                this.state.offset.x = e.clientX - rect.left;
+                this.state.offset.y = e.clientY - rect.top;
                 
                 e.currentTarget.style.zIndex = '1000';
                 e.currentTarget.style.cursor = 'grabbing';
                 e.preventDefault();
-            }
+            },
 
-            function handleDrag(e) {
-                if (!appState.isDragging || !appState.currentEntity) return;
+            handleMouseMove(e) {
+                if (!this.state.isDragging || !this.state.currentEntity) return;
                 
                 const container = document.querySelector('.modeling-area');
                 const containerRect = container.getBoundingClientRect();
                 
-                let x = e.clientX - containerRect.left - appState.offset.x;
-                let y = e.clientY - containerRect.top - appState.offset.y;
+                let x = e.clientX - containerRect.left - this.state.offset.x;
+                let y = e.clientY - containerRect.top - this.state.offset.y;
                 
-                // Boundary constraints
-                x = Math.max(0, Math.min(x, container.offsetWidth - appState.currentEntity.offsetWidth));
-                y = Math.max(0, Math.min(y, container.offsetHeight - appState.currentEntity.offsetHeight));
+                x = Math.max(0, Math.min(x, container.offsetWidth - this.state.currentEntity.offsetWidth));
+                y = Math.max(0, Math.min(y, container.offsetHeight - this.state.currentEntity.offsetHeight));
                 
-                appState.currentEntity.style.left = x + 'px';
-                appState.currentEntity.style.top = y + 'px';
-            }
+                this.state.currentEntity.style.left = x + 'px';
+                this.state.currentEntity.style.top = y + 'px';
+            },
 
-            function endDrag() {
-                if (appState.currentEntity) {
-                    appState.currentEntity.style.zIndex = '';
-                    appState.currentEntity.style.cursor = 'move';
+            handleMouseUp() {
+                if (this.state.currentEntity) {
+                    this.state.currentEntity.style.zIndex = '';
+                    this.state.currentEntity.style.cursor = 'move';
                 }
-                appState.isDragging = false;
-                appState.currentEntity = null;
-            }
+                this.state.isDragging = false;
+                this.state.currentEntity = null;
+            },
 
-            function selectEntity(e) {
-                if (appState.selectedTool === 'select') {
+            handleEntityClick(e) {
+                if (this.state.selectedTool === 'select') {
                     document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
                     e.currentTarget.classList.add('selected');
-                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
+                    const entityName = e.currentTarget.querySelector('.entity-header span').textContent;
+                    this.showNotification(`Selected entity: ${entityName}`, 'info');
                 }
-            }
+            },
 
-            // Attach global mouse handlers
-            document.removeEventListener('mousemove', handleDrag);
-            document.removeEventListener('mouseup', endDrag);
-            document.addEventListener('mousemove', handleDrag);
-            document.addEventListener('mouseup', endDrag);
-        }
-
-        // Model Management
-        function initializeModelManagement() {
-            const modelItems = document.querySelectorAll('.model-item');
-            const addModelBtn = document.querySelector('.add-model-btn');
-            
-            modelItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    modelItems.forEach(el => el.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const modelName = this.querySelector('.model-name').textContent;
-                    document.querySelector('.canvas-title').textContent = modelName;
-                    appState.activeModel = modelName;
-                    
-                    // Animation feedback
-                    this.style.transform = 'scale(0.98)';
-                    setTimeout(() => this.style.transform = '', 150);
+            // Model Management
+            initializeModelManagement() {
+                document.querySelectorAll('.model-card').forEach(card => {
+                    card.addEventListener('click', this.handleModelSelect.bind(this));
                 });
-            });
 
-            addModelBtn.addEventListener('click', function() {
-                const name = prompt('Enter model name:');
+                document.querySelector('.create-model-btn').addEventListener('click', this.handleCreateModel.bind(this));
+            },
+
+            handleModelSelect(e) {
+                document.querySelectorAll('.model-card').forEach(card => card.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                
+                const modelName = e.currentTarget.querySelector('.model-name').textContent;
+                document.querySelector('.canvas-title').textContent = modelName;
+                this.state.activeModel = modelName;
+                
+                e.currentTarget.style.transform = 'scale(0.98)';
+                setTimeout(() => e.currentTarget.style.transform = '', 150);
+                
+                this.showNotification(`Loaded model: ${modelName}`, 'success');
+            },
+
+            handleCreateModel() {
+                const name = prompt('Enter model name (e.g., "Equity Derivatives Risk Model"):');
                 if (name && name.trim()) {
-                    createNewModel(name.trim());
+                    this.createNewModel(name.trim());
                 }
-            });
-        }
+            },
 
-        function createNewModel(name) {
-            const modelList = document.querySelector('.model-list');
-            const newModel = document.createElement('div');
-            newModel.className = 'model-item';
-            
-            // Determine entity count and type based on name
-            const entityCount = Math.floor(Math.random() * 8) + 3;
-            const domainTypes = ['Financial', 'Analytics', 'Trading', 'Risk', 'Custom'];
-            const randomDomain = domainTypes[Math.floor(Math.random() * domainTypes.length)];
-            
-            newModel.innerHTML = `
-                <div class="model-status"></div>
-                <div class="model-name">${name}</div>
-                <div class="model-type">${randomDomain} Domain • ${entityCount} entities</div>
-            `;
-            
-            modelList.appendChild(newModel);
-            
-            newModel.addEventListener('click', function() {
-                document.querySelectorAll('.model-item').forEach(el => el.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelector('.canvas-title').textContent = name;
-                appState.activeModel = name;
+            createNewModel(name) {
+                const modelGrid = document.querySelector('.model-grid');
+                const newCard = document.createElement('div');
+                newCard.className = 'model-card';
                 
-                // Clear the canvas and show loading
-                clearCanvas();
-                showModelLoadingAnimation(name);
-            });
-            
-            // Auto-select new model with animation
-            newModel.style.opacity = '0';
-            newModel.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                newModel.style.transition = 'all 0.5s ease';
-                newModel.style.opacity = '1';
-                newModel.style.transform = 'translateY(0)';
-                newModel.click(); // Auto-select
-            }, 100);
-            
-            showNotification(`✅ Model "${name}" created with ${entityCount} entities! Click to view.`);
-        }
-
-        function clearCanvas() {
-            const modelingArea = document.querySelector('.modeling-area');
-            // Remove all entities and connections, but keep the area itself
-            const entities = modelingArea.querySelectorAll('.entity');
-            const connections = modelingArea.querySelectorAll('.connection');
-            
-            entities.forEach(entity => entity.remove());
-            connections.forEach(connection => connection.remove());
-        }
-
-        function showModelLoadingAnimation(modelName) {
-            const modelingArea = document.querySelector('.modeling-area');
-            
-            // Add loading indicator
-            const loader = document.createElement('div');
-            loader.className = 'model-loader';
-            loader.style.cssText = `
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(255, 255, 255, 0.9);
-                padding: 30px;
-                border-radius: 16px;
-                text-align: center;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-                z-index: 1000;
-            `;
-            
-            loader.innerHTML = `
-                <div style="color: #10B981; font-size: 32px; margin-bottom: 16px;">
-                    <i class="fas fa-spinner fa-spin"></i>
-                </div>
-                <div style="color: #374151; font-weight: 600; margin-bottom: 8px;">
-                    Loading ${modelName}
-                </div>
-                <div style="color: #6B7280; font-size: 14px;">
-                    Generating entities and relationships...
-                </div>
-            `;
-            
-            modelingArea.appendChild(loader);
-            
-            // Remove loader and show demo entities after 2 seconds
-            setTimeout(() => {
-                loader.remove();
-                generateDemoEntities(modelName);
-            }, 2000);
-        }
-
-        function generateDemoEntities(modelName) {
-            const modelingArea = document.querySelector('.modeling-area');
-            
-            // Different entity sets based on model type
-            const modelTemplates = {
-                'Risk': [
-                    { name: 'Position', icon: 'fas fa-chart-line', x: 50, y: 50 },
-                    { name: 'RiskMetric', icon: 'fas fa-exclamation-triangle', x: 400, y: 50 },
-                    { name: 'StressTest', icon: 'fas fa-heartbeat', x: 225, y: 250 }
-                ],
-                'Trading': [
-                    { name: 'Order', icon: 'fas fa-shopping-cart', x: 50, y: 50 },
-                    { name: 'Trade', icon: 'fas fa-handshake', x: 400, y: 50 },
-                    { name: 'Portfolio', icon: 'fas fa-briefcase', x: 225, y: 250 }
-                ],
-                'Default': [
-                    { name: 'Entity1', icon: 'fas fa-cube', x: 50, y: 50 },
-                    { name: 'Entity2', icon: 'fas fa-database', x: 400, y: 50 },
-                    { name: 'Entity3', icon: 'fas fa-cog', x: 225, y: 250 }
-                ]
-            };
-            
-            const template = modelTemplates[Object.keys(modelTemplates).find(key => modelName.includes(key))] || modelTemplates.Default;
-            
-            template.forEach((entityDef, index) => {
-                setTimeout(() => {
-                    createDemoEntity(entityDef.name, entityDef.icon, entityDef.x, entityDef.y, modelingArea);
-                }, index * 500);
-            });
-            
-            showNotification(`🎯 ${modelName} loaded! Try the modeling tools: Entity, Relation, Validate`);
-        }
-
-        function createDemoEntity(name, icon, x, y, container) {
-            const fields = [
-                `${name.toLowerCase()}Id:UUID:PK`,
-                'name:String',
-                'value:BigDecimal',
-                'createdAt:DateTime'
-            ];
-            
-            const entity = document.createElement('div');
-            entity.className = 'entity';
-            entity.style.left = x + 'px';
-            entity.style.top = y + 'px';
-            entity.style.transform = 'scale(0)';
-            entity.style.transition = 'transform 0.5s ease';
-            
-            entity.innerHTML = `
-                <div class="entity-header">
-                    <span>${name}</span>
-                    <i class="${icon}"></i>
-                </div>
-                <div class="entity-body">
-                    ${fields.map(field => {
-                        const [fieldName, type, key] = field.split(':');
-                        return `
-                            <div class="entity-field">
-                                <span class="field-name">${fieldName}</span>
-                                <div>
-                                    ${key ? `<span class="field-key">${key}</span>` : ''}
-                                    <span class="field-type">${type}</span>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-            
-            container.appendChild(entity);
-            
-            // Animate in
-            setTimeout(() => {
-                entity.style.transform = 'scale(1)';
-            }, 100);
-            
-            // Add interactivity
-            entity.addEventListener('mousedown', function(e) {
-                if (appState.selectedTool !== 'select') return;
+                const entityCount = Math.floor(Math.random() * 15) + 8;
+                const domains = ['Risk Management', 'Trading Systems', 'Compliance', 'Market Data', 'Portfolio Analytics'];
+                const statuses = ['Development', 'Staging', 'Production'];
+                const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+                const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
                 
-                appState.isDragging = true;
-                appState.currentEntity = e.currentTarget;
+                newCard.innerHTML = `
+                    <div class="model-header">
+                        <div class="model-name">${name}</div>
+                        <div class="model-status"></div>
+                    </div>
+                    <div class="model-meta">${randomDomain} • ${randomStatus}</div>
+                    <div class="model-stats">
+                        <span>${entityCount} entities</span>
+                        <span>•</span>
+                        <span>Just created</span>
+                    </div>
+                `;
                 
-                const rect = e.currentTarget.getBoundingClientRect();
-                appState.offset.x = e.clientX - rect.left;
-                appState.offset.y = e.clientY - rect.top;
+                modelGrid.appendChild(newCard);
+                newCard.addEventListener('click', this.handleModelSelect.bind(this));
                 
-                e.currentTarget.style.zIndex = '1000';
-                e.currentTarget.style.cursor = 'grabbing';
-                e.preventDefault();
-            });
-            
-            entity.addEventListener('click', function(e) {
-                if (appState.selectedTool === 'select') {
-                    document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
-                    e.currentTarget.classList.add('selected');
-                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
-                }
-            });
-        }
+                newCard.classList.add('animate-in');
+                this.showNotification(`Created model: ${name}`, 'success');
+            },
 
-        // Tool Selection
-        function initializeToolSelection() {
-            const toolBtns = document.querySelectorAll('.tool-btn');
-            const modelingArea = document.querySelector('.modeling-area');
-            
-            toolBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    toolBtns.forEach(el => el.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const toolName = this.textContent.trim().toLowerCase();
-                    appState.selectedTool = toolName;
-                    
-                    // Clear any existing click handlers
-                    modelingArea.replaceWith(modelingArea.cloneNode(true));
-                    const newModelingArea = document.querySelector('.modeling-area');
-                    
-                    // Update cursor and add functionality based on tool
-                    switch(toolName) {
-                        case 'select':
-                            newModelingArea.style.cursor = 'default';
-                            showNotification('🖱️ Select Tool Active - Click and drag entities to move them');
-                            initializeDragAndDrop(); // Re-initialize drag and drop
-                            break;
-                        case 'entity':
-                            newModelingArea.style.cursor = 'crosshair';
-                            showNotification('📦 Entity Tool Active - Click anywhere on canvas to create a new entity');
-                            addEntityCreationMode(newModelingArea);
-                            break;
-                        case 'relation':
-                            newModelingArea.style.cursor = 'pointer';
-                            showNotification('🔗 Relation Tool Active - Click on entities to connect them');
-                            addRelationMode(newModelingArea);
-                            break;
-                        case 'validate':
-                            newModelingArea.style.cursor = 'help';
-                            validateModel();
-                            break;
-                    }
-                    
-                    // Visual feedback
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => this.style.transform = '', 150);
+            // Tool Selection
+            initializeToolSelection() {
+                document.querySelectorAll('.tool-card').forEach(tool => {
+                    tool.addEventListener('click', this.handleToolSelect.bind(this));
                 });
-            });
-        }
+            },
 
-        // Add Entity Creation Mode
-        function addEntityCreationMode(area) {
-            area.addEventListener('click', function(e) {
-                if (appState.selectedTool !== 'entity') return;
+            handleToolSelect(e) {
+                document.querySelectorAll('.tool-card').forEach(tool => tool.classList.remove('active'));
+                e.currentTarget.classList.add('active');
                 
-                const rect = area.getBoundingClientRect();
-                const x = e.clientX - rect.left - 110; // Center the entity
-                const y = e.clientY - rect.top - 100;
+                const toolName = e.currentTarget.querySelector('.tool-name').textContent.toLowerCase();
+                this.state.selectedTool = toolName;
                 
-                // Ensure entity stays within bounds
-                const safeX = Math.max(10, Math.min(x, area.offsetWidth - 230));
-                const safeY = Math.max(10, Math.min(y, area.offsetHeight - 200));
-                
-                createNewEntity(safeX, safeY, area);
-            });
-        }
-
-        // Create New Entity
-        function createNewEntity(x, y, container) {
-            const entityTypes = [
-                { name: 'Customer', icon: 'fas fa-user', fields: ['customerId:UUID:PK', 'firstName:String', 'lastName:String', 'email:String'] },
-                { name: 'Order', icon: 'fas fa-shopping-cart', fields: ['orderId:UUID:PK', 'customerId:UUID:FK', 'amount:BigDecimal', 'status:Enum'] },
-                { name: 'Product', icon: 'fas fa-box', fields: ['productId:UUID:PK', 'name:String', 'price:BigDecimal', 'category:String'] },
-                { name: 'Transaction', icon: 'fas fa-exchange-alt', fields: ['transactionId:UUID:PK', 'amount:BigDecimal', 'timestamp:DateTime', 'type:Enum'] },
-                { name: 'Risk', icon: 'fas fa-exclamation-triangle', fields: ['riskId:UUID:PK', 'value:BigDecimal', 'type:Enum', 'calculationDate:Date'] }
-            ];
-            
-            const randomEntity = entityTypes[Math.floor(Math.random() * entityTypes.length)];
-            const entityId = 'entity_' + Date.now();
-            
-            const entity = document.createElement('div');
-            entity.className = 'entity';
-            entity.id = entityId;
-            entity.style.left = x + 'px';
-            entity.style.top = y + 'px';
-            entity.style.zIndex = '100';
-            
-            entity.innerHTML = `
-                <div class="entity-header">
-                    <span>${randomEntity.name}</span>
-                    <i class="${randomEntity.icon}"></i>
-                </div>
-                <div class="entity-body">
-                    ${randomEntity.fields.map(field => {
-                        const [name, type, key] = field.split(':');
-                        return `
-                            <div class="entity-field">
-                                <span class="field-name">${name}</span>
-                                <div>
-                                    ${key ? `<span class="field-key">${key}</span>` : ''}
-                                    <span class="field-type">${type}</span>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-            
-            container.appendChild(entity);
-            
-            // Add drag functionality to new entity
-            entity.addEventListener('mousedown', function(e) {
-                if (appState.selectedTool !== 'select') return;
-                
-                appState.isDragging = true;
-                appState.currentEntity = e.currentTarget;
-                
-                const rect = e.currentTarget.getBoundingClientRect();
-                appState.offset.x = e.clientX - rect.left;
-                appState.offset.y = e.clientY - rect.top;
-                
-                e.currentTarget.style.zIndex = '1000';
-                e.currentTarget.style.cursor = 'grabbing';
-                e.preventDefault();
-            });
-            
-            entity.addEventListener('click', function(e) {
-                if (appState.selectedTool === 'select') {
-                    document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
-                    e.currentTarget.classList.add('selected');
-                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
-                }
-            });
-            
-            // Animate in
-            entity.style.transform = 'scale(0)';
-            setTimeout(() => {
-                entity.style.transform = 'scale(1)';
-                entity.style.transition = 'transform 0.3s ease';
-            }, 10);
-            
-            showNotification(`✅ Created new ${randomEntity.name} entity! Click Select tool to move it.`);
-        }
-
-        // Add Relation Mode
-        function addRelationMode(area) {
-            let firstEntity = null;
-            
-            // Add click handlers to existing entities
-            document.querySelectorAll('.entity').forEach(entity => {
-                entity.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    if (appState.selectedTool !== 'relation') return;
-                    
-                    if (!firstEntity) {
-                        firstEntity = this;
-                        this.style.boxShadow = '0 0 0 3px #fbbf24';
-                        showNotification('🔗 First entity selected. Click another entity to create relationship.');
-                    } else if (firstEntity !== this) {
-                        createRelationship(firstEntity, this, area);
-                        firstEntity.style.boxShadow = '';
-                        firstEntity = null;
-                    }
-                });
-            });
-        }
-
-        // Create Relationship
-        function createRelationship(entity1, entity2, container) {
-            const rect1 = entity1.getBoundingClientRect();
-            const rect2 = entity2.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            
-            const x1 = rect1.left - containerRect.left + rect1.width / 2;
-            const y1 = rect1.top - containerRect.top + rect1.height / 2;
-            const x2 = rect2.left - containerRect.left + rect2.width / 2;
-            const y2 = rect2.top - containerRect.top + rect2.height / 2;
-            
-            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-            
-            const connection = document.createElement('div');
-            connection.className = 'connection';
-            connection.style.left = x1 + 'px';
-            connection.style.top = y1 + 'px';
-            connection.style.width = length + 'px';
-            connection.style.transform = `rotate(${angle}deg)`;
-            connection.style.transformOrigin = '0 50%';
-            
-            const label = document.createElement('div');
-            label.className = 'connection-label';
-            label.textContent = '1:N Relationship';
-            connection.appendChild(label);
-            
-            container.appendChild(connection);
-            
-            showNotification('✅ Relationship created! Connection line added between entities.');
-        }
-
-        // Header Actions
-        function initializeHeaderActions() {
-            const actionBtns = document.querySelectorAll('.action-btn');
-            
-            actionBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const action = this.textContent.trim();
-                    
-                    switch(action) {
-                        case 'Data Curation':
-                            showDataCurationDashboard();
-                            break;
-                        case 'FINOS Legend':
-                            showLegendIntegration();
-                            break;
-                        case 'Export DSL':
-                            exportToLegendDSL();
-                            break;
-                        case 'Deploy AWS':
-                            deployToAWS();
-                            break;
-                    }
-                    
-                    // Visual feedback
-                    this.style.transform = 'scale(0.98)';
-                    setTimeout(() => this.style.transform = '', 150);
-                });
-            });
-        }
-
-        function showDataCurationDashboard() {
-            showNotification('📊 Data Curation: Traceability ✓ Security ✓ Performance 8.7ms ✓ Correctness 99.9%');
-        }
-
-        function showLegendIntegration() {
-            showNotification('🏛 FINOS Legend: Connected to github.com/finos/legend • Contributing to open source');
-        }
-
-        function exportToLegendDSL() {
-            showNotification('📝 Exporting to Legend DSL...', 'info');
-            
-            setTimeout(() => {
-                showNotification('✅ Legend DSL exported! Compatible with legend.finos.org');
-            }, 1500);
-        }
-
-        function deployToAWS() {
-            showNotification('🚀 Deploying to AWS...', 'info');
-            
-            const steps = [
-                '🔄 Building Docker container...',
-                '🔄 Pushing to ECR...',
-                '🔄 Creating Lambda functions...',
-                '🔄 Setting up API Gateway...',
-                '🔄 Configuring RDS instances...',
-                '✅ Deployment complete! Live at https://api.modelforge.com/risk-management'
-            ];
-            
-            steps.forEach((step, index) => {
-                setTimeout(() => {
-                    showNotification(step, index < steps.length - 1 ? 'info' : 'success');
-                }, (index + 1) * 1000);
-            });
-        }
-
-        // Canvas Actions
-        function initializeCanvasActions() {
-            document.querySelectorAll('.canvas-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const action = this.textContent.trim();
-                    
-                    switch(action) {
-                        case 'Save':
-                            showNotification('💾 Model saved successfully!');
-                            break;
-                        case 'Share':
-                            showNotification('🔗 Share link copied to clipboard!');
-                            break;
-                        case 'Preview':
-                            showNotification('👁 Opening preview mode...');
-                            break;
-                    }
-                    
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => this.style.transform = '', 150);
-                });
-            });
-        }
-
-        // AI Assistant
-        window.toggleAI = function() {
-            const assistant = document.getElementById('aiAssistant');
-            const toggle = document.querySelector('.ai-toggle');
-            
-            assistant.classList.toggle('active');
-            toggle.style.transform = assistant.classList.contains('active') ? 'rotate(45deg)' : '';
-        }
-
-        function initializeAIAssistant() {
-            const suggestionTags = document.querySelectorAll('.suggestion-tag');
-            const generateBtn = document.querySelector('.ai-generate-btn');
-            const aiInput = document.querySelector('.ai-input');
-            
-            const suggestions = {
-                'Risk Models': 'Create a comprehensive risk assessment system with Position, Trade, RiskMetric, VaR, and StressTest entities',
-                'Trading Systems': 'Build a trading platform with Order, Trade, Instrument, Portfolio, and PnL entities',
-                'Compliance': 'Design compliance monitoring with Transaction, Rule, Alert, Investigation, and Report entities',
-                'Market Data': 'Create market data system with Instrument, Price, Quote, MarketDataSource, and TimeSeries entities'
-            };
-            
-            suggestionTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    aiInput.value = suggestions[this.textContent] || this.textContent;
-                    aiInput.focus();
-                    
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => this.style.transform = '', 150);
-                });
-            });
-            
-            generateBtn.addEventListener('click', function() {
-                if (aiInput.value.trim()) {
-                    generateModel(aiInput.value.trim());
-                    aiInput.value = '';
-                    toggleAI();
-                }
-            });
-        }
-
-        function generateModel(description) {
-            showNotification('🤖 AI is generating your model...', 'info');
-            
-            setTimeout(() => {
-                showNotification(`✅ AI Model Generated! "${description}" has been processed and added to workspace.`);
-            }, 2000);
-        }
-
-        function validateModel() {
-            showNotification('🔍 Running comprehensive model validation...', 'info');
-            
-            const entities = document.querySelectorAll('.entity');
-            const connections = document.querySelectorAll('.connection');
-            
-            // Show validation progress
-            setTimeout(() => {
-                showNotification('🔄 Checking entity relationships...', 'info');
-            }, 1000);
-            
-            setTimeout(() => {
-                showNotification('🔄 Validating field types and constraints...', 'info');
-            }, 2000);
-            
-            setTimeout(() => {
-                showNotification('🔄 Analyzing data flow patterns...', 'info');
-            }, 3000);
-            
-            setTimeout(() => {
-                const issues = Math.floor(Math.random() * 4);
-                const warnings = Math.floor(Math.random() * 3);
-                
-                if (issues === 0 && warnings === 0) {
-                    showNotification(`✅ Validation Complete! Model is perfect with ${entities.length} entities and ${connections.length} relationships.`);
-                } else if (issues === 0) {
-                    showNotification(`⚠️ Validation Complete! Found ${warnings} warnings but no critical issues. Model is deployable.`, 'warning');
-                } else {
-                    showNotification(`❌ Validation Complete! Found ${issues} critical issues and ${warnings} warnings. Review required.`, 'warning');
+                const modelingArea = document.querySelector('.modeling-area');
+                switch(toolName) {
+                    case 'select':
+                        modelingArea.style.cursor = 'default';
+                        this.showNotification('Select tool activated - Click and drag entities', 'info');
+                        break;
+                    case 'entity':
+                        modelingArea.style.cursor = 'crosshair';
+                        this.showNotification('Entity tool activated - Click to create new entities', 'info');
+                        this.enableEntityCreation();
+                        break;
+                    case 'relation':
+                        modelingArea.style.cursor = 'pointer';
+                        this.showNotification('Relation tool activated - Click entities to connect', 'info');
+                        this.enableRelationCreation();
+                        break;
+                    case 'validate':
+                        this.runModelValidation();
+                        break;
                 }
                 
-                // Highlight a random entity as if it has an issue
-                if (issues > 0 && entities.length > 0) {
-                    const randomEntity = entities[Math.floor(Math.random() * entities.length)];
-                    randomEntity.style.border = '2px solid #f87171';
-                    setTimeout(() => {
-                        randomEntity.style.border = '';
-                    }, 3000);
-                }
-            }, 4000);
-        }
+                e.currentTarget.style.transform = 'scale(0.95)';
+                setTimeout(() => e.currentTarget.style.transform = '', 150);
+            },
 
-        // Real-time Updates
-        function startRealTimeUpdates() {
-            setInterval(() => {
-                const metrics = document.querySelectorAll('.metric-value');
-                if (metrics.length >= 6) {
-                    metrics[2].textContent = Math.floor(Math.random() * 5) + 46; // Models
-                    metrics[3].textContent = Math.floor(Math.random() * 10) + 150; // Deployments
-                }
-                
-                // Update collaboration count
-                const collab = document.querySelector('.collaboration-indicator');
-                const userCount = Math.floor(Math.random() * 3) + 3;
-                collab.innerHTML = `<i class="fas fa-users"></i> ${userCount} users collaborating`;
-            }, 5000);
-            
-            // Initialize Legend button
-            document.querySelector('.legend-btn').addEventListener('click', function() {
-                showNotification('🏛 Opening FINOS Legend integration panel...');
-            });
-        }
-
-        // Quick Demo Function
-        window.runQuickDemo = function() {
-            showNotification('🎬 Starting Quick Demo - Watch all features in action!', 'info');
-            
-            // Step 1: Create a demo model
-            setTimeout(() => {
-                showNotification('📝 Creating "Demo Model"...', 'info');
-                createNewModel('Demo E-Commerce System');
-            }, 1000);
-            
-            // Step 2: Switch to Entity tool
-            setTimeout(() => {
-                showNotification('🔧 Selecting Entity tool...', 'info');
-                document.querySelectorAll('.tool-btn')[1].click(); // Entity tool
-            }, 3000);
-            
-            // Step 3: Create an entity automatically
-            setTimeout(() => {
-                showNotification('📦 Creating new entity automatically...', 'info');
+            enableEntityCreation() {
                 const area = document.querySelector('.modeling-area');
-                createNewEntity(100, 150, area);
-            }, 5000);
-            
-            // Step 4: Switch to Relation tool
-            setTimeout(() => {
-                showNotification('🔗 Switching to Relation tool...', 'info');
-                document.querySelectorAll('.tool-btn')[2].click(); // Relation tool
-            }, 7000);
-            
-            // Step 5: Create relationship
-            setTimeout(() => {
-                showNotification('🔗 Creating relationship between entities...', 'info');
-                const entities = document.querySelectorAll('.entity');
-                if (entities.length >= 2) {
-                    createRelationship(entities[0], entities[1], document.querySelector('.modeling-area'));
-                }
-            }, 9000);
-            
-            // Step 6: Switch to Select tool
-            setTimeout(() => {
-                showNotification('🖱️ Switching to Select tool for dragging...', 'info');
-                document.querySelectorAll('.tool-btn')[0].click(); // Select tool
-            }, 11000);
-            
-            // Step 7: Demonstrate drag
-            setTimeout(() => {
-                showNotification('🎯 Try dragging the entities around now!', 'info');
-                const firstEntity = document.querySelector('.entity');
-                if (firstEntity) {
-                    firstEntity.style.boxShadow = '0 0 0 3px #10B981';
-                    setTimeout(() => {
-                        firstEntity.style.boxShadow = '';
-                    }, 2000);
-                }
-            }, 13000);
-            
-            // Step 8: Run validation
-            setTimeout(() => {
-                showNotification('✅ Running model validation...', 'info');
-                document.querySelectorAll('.tool-btn')[3].click(); // Validate tool
-            }, 15000);
-            
-            // Step 9: Final message
-            setTimeout(() => {
-                showNotification('🎉 Demo complete! Now try creating your own models and entities.', 'success');
-            }, 20000);
-        }
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 80px;
-                right: 24px;
-                background: ${type === 'success' ? 'rgba(16, 185, 129, 0.95)' : 
-                           type === 'warning' ? 'rgba(251, 191, 36, 0.95)' : 
-                           'rgba(59, 130, 246, 0.95)'};
-                color: white;
-                padding: 16px 20px;
-                border-radius: 12px;
-                font-weight: 600;
-                font-size: 14px;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-                z-index: 2000;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                max-width: 350px;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            `;
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Remove after delay
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
+                area.onclick = (e) => {
+                    if (this.state.selectedTool !== 'entity') return;
+                    
+                    const rect = area.getBoundingClientRect();
+                    const x = e.clientX - rect.left - 120;
+                    const y = e.clientY - rect.top - 100;
+                    
+                    this.createEntity(x, y);
+                };
+            },
+
+            createEntity(x, y) {
+                const entityTypes = [
+                    { name: 'DataConsumer', icon: 'fas fa-users', fields: ['consumerId:UUID:PK', 'organizationName:String', 'dataRequirements:String[]', 'satisfactionScore:BigDecimal'] },
+                    { name: 'DataProducer', icon: 'fas fa-industry', fields: ['producerId:UUID:PK', 'systemName:String', 'dataTypes:String[]', 'qualityMetrics:QualityScore'] },
+                    { name: 'AutomatedProcess', icon: 'fas fa-cogs', fields: ['processId:UUID:PK', 'processName:String', 'efficiencyGain:BigDecimal', 'automationLevel:Percentage'] },
+                    { name: 'DataPipeline', icon: 'fas fa-stream', fields: ['pipelineId:UUID:PK', 'sourceSystem:String', 'targetSystem:String', 'throughputRate:BigDecimal'] },
+                    { name: 'QualityMetric', icon: 'fas fa-shield-alt', fields: ['metricId:UUID:PK', 'traceabilityScore:BigDecimal', 'securityLevel:SecurityType', 'performanceLatency:Duration'] },
+                    { name: 'CloudResource', icon: 'fas fa-cloud', fields: ['resourceId:UUID:PK', 'awsServiceType:String', 'scalabilityFactor:BigDecimal', 'costOptimization:BigDecimal'] },
+                    { name: 'LegendModel', icon: 'fab fa-github', fields: ['modelId:UUID:PK', 'legendDSL:String', 'contributionStatus:String', 'openSourceLicense:String'] }
+                ];
+                
+                const randomEntity = entityTypes[Math.floor(Math.random() * entityTypes.length)];
+                const container = document.querySelector('.modeling-area');
+                
+                const entity = document.createElement('div');
+                entity.className = 'entity';
+                entity.style.left = Math.max(10, Math.min(x, container.offsetWidth - 260)) + 'px';
+                entity.style.top = Math.max(10, Math.min(y, container.offsetHeight - 200)) + 'px';
+                
+                entity.innerHTML = `
+                    <div class="entity-header">
+                        <span>${randomEntity.name}</span>
+                        <i class="${randomEntity.icon}"></i>
+                    </div>
+                    <div class="entity-body">
+                        ${randomEntity.fields.map(field => {
+                            const [name, type, key] = field.split(':');
+                            return `
+                                <div class="entity-field">
+                                    <span class="field-name">${name}</span>
+                                    <div class="field-info">
+                                        ${key ? `<span class="field-key">${key}</span>` : ''}
+                                        <span class="field-type">${type}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(entity);
+                entity.classList.add('animate-in');
+                
+                entity.addEventListener('mousedown', this.handleEntityMouseDown.bind(this));
+                entity.addEventListener('click', this.handleEntityClick.bind(this));
+                
+                this.showNotification(`Created ${randomEntity.name} entity`, 'success');
+            },
+
+            enableRelationCreation() {
+                let firstEntity = null;
+                
+                document.querySelectorAll('.entity').forEach(entity => {
+                    entity.onclick = (e) => {
+                        e.stopPropagation();
+                        if (this.state.selectedTool !== 'relation') return;
+                        
+                        if (!firstEntity) {
+                            firstEntity = entity;
+                            entity.style.border = '2px solid var(--primary-blue)';
+                            this.showNotification('First entity selected. Click another to connect.', 'info');
+                        } else if (firstEntity !== entity) {
+                            this.createRelation(firstEntity, entity);
+                            firstEntity.style.border = '';
+                            firstEntity = null;
+                        }
+                    };
+                });
+            },
+
+            createRelation(entity1, entity2) {
+                const container = document.querySelector('.modeling-area');
+                const rect1 = entity1.getBoundingClientRect();
+                const rect2 = entity2.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                
+                const x1 = rect1.left - containerRect.left + rect1.width / 2;
+                const y1 = rect1.top - containerRect.top + rect1.height / 2;
+                const x2 = rect2.left - containerRect.left + rect2.width / 2;
+                const y2 = rect2.top - containerRect.top + rect2.height / 2;
+                
+                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                const connection = document.createElement('div');
+                connection.className = 'connection';
+                connection.style.left = x1 + 'px';
+                connection.style.top = y1 + 'px';
+                connection.style.width = length + 'px';
+                connection.style.transform = `rotate(${angle}deg)`;
+                connection.innerHTML = '<div class="connection-label">1:N Relationship</div>';
+                
+                container.appendChild(connection);
+                this.showNotification('Relationship created successfully', 'success');
+            },
+
+            runModelValidation() {
+                this.showNotification('Running comprehensive model validation...', 'info');
+                
+                setTimeout(() => this.showNotification('Checking entity relationships...', 'info'), 1000);
+                setTimeout(() => this.showNotification('Validating field constraints...', 'info'), 2000);
+                setTimeout(() => this.showNotification('Analyzing compliance requirements...', 'info'), 3000);
+                
                 setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
+                    const entities = document.querySelectorAll('.entity').length;
+                    const connections = document.querySelectorAll('.connection').length;
+                    this.showNotification(`✓ Validation complete: ${entities} entities, ${connections} relationships. Model is SOX compliant.`, 'success');
+                }, 4000);
+            },
+
+            initializeHeaderActions() {
+                document.querySelectorAll('.nav-item').forEach(btn => {
+                    btn.addEventListener('click', this.handleHeaderAction.bind(this));
+                });
+            },
+
+            handleHeaderAction(e) {
+                const action = e.currentTarget.textContent.trim();
+                
+                switch(action) {
+                    case 'Data Curation':
+                        this.showDataCurationDashboard();
+                        break;
+                    case 'Automation':
+                        this.showAutomationDashboard();
+                        break;
+                    case 'Legend Contrib':
+                        this.showLegendContribution();
+                        break;
+                    case 'Consumers':
+                        this.showConsumerProducerEngagement();
+                        break;
+                    case 'Cloud Tech':
+                        this.showCloudTechnologyAdoption();
+                        break;
+                    case 'Deploy':
+                        this.handleDeploy();
+                        break;
+                }
+                
+                e.currentTarget.style.transform = 'scale(0.98)';
+                setTimeout(() => e.currentTarget.style.transform = '', 150);
+            },
+
+            showDataCurationDashboard() {
+                this.showNotification('📊 Data Curation Dashboard: Multi-dimensional analysis with traceability, security, performance, and correctness metrics across supply and demand processes', 'info');
+                setTimeout(() => {
+                    this.showNotification('✓ Modern data management tools active: 847 consumers, 1,234 producers, 99.94% correctness', 'success');
+                }, 2000);
+            },
+
+            showAutomationDashboard() {
+                this.showNotification('🤖 Process Automation: 156 automated processes achieving +34% efficiency gains', 'info');
+                setTimeout(() => {
+                    this.showNotification('✓ Automation identifying areas for further efficiencies in data pipeline optimization', 'success');
+                }, 2000);
+            },
+
+            showLegendContribution() {
+                this.showNotification('🏛 FINOS Legend: Contributing to open source technology at github.com/finos/legend', 'info');
+                setTimeout(() => {
+                    this.showNotification('📝 Legend Language DSL: Developing and contributing to legend.finos.org/docs/language/legend-language', 'info');
+                }, 1500);
+                setTimeout(() => {
+                    this.showNotification('✅ 23 Pull Requests contributed to Legend ecosystem, enhancing modeling language capabilities', 'success');
+                }, 3000);
+            },
+
+            showConsumerProducerEngagement() {
+                this.showNotification('👥 Consumer/Producer Engagement: Designing appropriate models to suit all stakeholder needs', 'info');
+                setTimeout(() => {
+                    this.showNotification('📈 847 data consumers and 1,234 data producers actively engaged with 98.7% satisfaction rate', 'success');
+                }, 2000);
+            },
+
+            showCloudTechnologyAdoption() {
+                this.showNotification('☁️ Cloud Technology Adoption: Driving AWS adoption for data processing and warehousing', 'info');
+                setTimeout(() => {
+                    this.showNotification('📊 5.2PB data warehoused in cloud with 100% migration success and optimized query execution', 'success');
+                }, 2000);
+            },
+
+            handleExport() {
+                this.showNotification('Preparing model export...', 'info');
+                setTimeout(() => {
+                    this.showNotification('✓ Model exported to Legend DSL format. Compatible with FINOS ecosystem.', 'success');
+                }, 2000);
+            },
+
+            handleDeploy() {
+                this.showNotification('🚀 Initiating cloud technology deployment for data processing and warehousing...', 'info');
+                
+                const steps = [
+                    '📦 Building modern data management tools with Java OOP architecture...',
+                    '☁️ Provisioning AWS cloud resources for scalable data warehousing...',
+                    '🔧 Configuring automated data pipelines with quality monitoring...',
+                    '🏛️ Integrating FINOS Legend DSL export and open source contributions...',
+                    '👥 Setting up consumer/producer engagement interfaces...',
+                    '📊 Deploying multi-dimensional data quality dashboards...',
+                    '🤖 Activating process automation for efficiency optimization...',
+                    '✅ Deployment successful! Modern data management platform live with 5.2PB warehousing capacity'
+                ];
+                
+                steps.forEach((step, index) => {
+                    setTimeout(() => {
+                        this.showNotification(step, index < steps.length - 1 ? 'info' : 'success');
+                    }, (index + 1) * 1200);
+                });
+            },
+
+            initializeCanvasActions() {
+                document.querySelectorAll('.canvas-btn').forEach(btn => {
+                    btn.addEventListener('click', this.handleCanvasAction.bind(this));
+                });
+            },
+
+            handleCanvasAction(e) {
+                const action = e.currentTarget.textContent.trim();
+                
+                switch(action) {
+                    case 'Save':
+                        this.showNotification('✓ Model saved to repository', 'success');
+                        break;
+                    case 'Version':
+                        this.showNotification('📝 Creating new version: v2.1.4', 'info');
+                        break;
+                    case 'Share':
+                        this.showNotification('🔗 Collaboration link copied to clipboard', 'success');
+                        break;
+                    case 'Generate Code':
+                        this.showNotification('🔧 Generating Java entities and SQL schema...', 'info');
+                        break;
+                }
+                
+                e.currentTarget.style.transform = 'scale(0.95)';
+                setTimeout(() => e.currentTarget.style.transform = '', 150);
+            },
+
+            initializeAIAssistant() {
+                const suggestions = document.querySelectorAll('.suggestion-chip');
+                const generateBtn = document.querySelector('.ai-generate-btn');
+                const aiInput = document.querySelector('.ai-input');
+                
+                const suggestionMap = {
+                    'Data Curation Pipeline': 'Create a comprehensive data curation pipeline with automated quality checks, traceability monitoring, security compliance, and performance optimization for multi-dimensional data processing',
+                    'Process Automation': 'Design process automation framework with efficiency monitoring, automated data validation, pipeline orchestration, and intelligent error handling for seamless data flow',
+                    'Cloud Data Warehouse': 'Build cloud-native data warehousing solution with AWS integration, scalable storage, query optimization, and real-time analytics for modern data processing',
+                    'Consumer Integration': 'Develop consumer/producer engagement platform with stakeholder management, requirement gathering, feedback loops, and customized model delivery for optimal satisfaction',
+                    'Quality Traceability': 'Implement multi-dimensional data quality framework with full traceability, security compliance, performance latency monitoring, and correctness validation across supply chain',
+                    'Legend DSL Export': 'Create Legend language DSL export functionality with github.com/finos/legend integration, open source contribution workflow, and modeling language enhancements',
+                    'Multi-dimensional Data': 'Design multi-dimensional data model with complex data relationships, dimensional analysis, cube processing, and advanced analytics capabilities for business intelligence',
+                    'Supply Chain Model': 'Build supply and demand process model with end-to-end traceability, quality gates, performance monitoring, and automated compliance checking for operational excellence'
+                };
+                
+                suggestions.forEach(chip => {
+                    chip.addEventListener('click', () => {
+                        aiInput.value = suggestionMap[chip.textContent] || chip.textContent;
+                        aiInput.focus();
+                        chip.style.transform = 'scale(0.95)';
+                        setTimeout(() => chip.style.transform = '', 150);
+                    });
+                });
+                
+                generateBtn.addEventListener('click', () => {
+                    if (aiInput.value.trim()) {
+                        this.generateAIModel(aiInput.value.trim());
+                        aiInput.value = '';
+                        this.toggleAI();
                     }
-                }, 300);
-            }, 4000);
-        }
+                });
+            },
+
+            generateAIModel(description) {
+                this.showNotification('🤖 AI analyzing requirements...', 'info');
+                
+                setTimeout(() => {
+                    this.showNotification('🧠 Generating domain entities...', 'info');
+                }, 1500);
+                
+                setTimeout(() => {
+                    this.showNotification('🔗 Creating relationships...', 'info');
+                }, 3000);
+                
+                setTimeout(() => {
+                    this.showNotification(`✅ AI model generated successfully! "${description}" has been processed and optimized for Goldman Sachs standards.`, 'success');
+                }, 4500);
+            },
+
+            toggleAI() {
+                const assistant = document.getElementById('aiAssistant');
+                const toggle = document.querySelector('.ai-toggle');
+                
+                assistant.classList.toggle('active');
+                toggle.style.transform = assistant.classList.contains('active') ? 'rotate(45deg)' : '';
+            },
+
+            startRealTimeUpdates() {
+                setInterval(() => {
+                    this.updateMetrics();
+                    this.updateCollaboration();
+                }, 5000);
+            },
+
+            updateMetrics() {
+                const metrics = document.querySelectorAll('.metric-value');
+                if (metrics.length >= 4) {
+                    // Simulate realistic financial metrics
+                    const assets = '$' + (2.3 + Math.random() * 0.2).toFixed(1) + 'T';
+                    const models = Math.floor(Math.random() * 5) + 45;
+                    const queryTime = (6.8 + Math.random() * 1.0).toFixed(1) + 'ms';
+                    const accuracy = (99.9 + Math.random() * 0.09).toFixed(2) + '%';
+                    
+                    metrics[0].textContent = assets;
+                    metrics[1].textContent = models;
+                    metrics[2].textContent = queryTime;
+                    metrics[3].textContent = accuracy;
+                }
+            },
+
+            updateCollaboration() {
+                const indicator = document.getElementById('collaborationCount');
+                const count = Math.floor(Math.random() * 3) + 3;
+                const roles = ['analysts', 'risk managers', 'quants', 'developers'];
+                const role = roles[Math.floor(Math.random() * roles.length)];
+                indicator.textContent = `${count} ${role} collaborating`;
+            },
+
+            showWelcomeMessage() {
+                setTimeout(() => {
+                    this.showNotification('Welcome to ModelForge Enterprise - Goldman Sachs Data Modeling Platform', 'info');
+                }, 1000);
+            },
+
+            showNotification(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.classList.add('show'), 100);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(notification), 300);
+                }, 4000);
+            }
+        };
+
+
+        window.toggleAI = () => ModelForgeApp.toggleAI();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            ModelForgeApp.init();
+        });
     </script>
 </body>
 </html>
