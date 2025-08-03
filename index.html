@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModelForge Pro - Enterprise Data Modeling Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #10B981;
+            --dark-green: #047857;
+            --light-green: #34D399;
+            --accent-green: #6EE7B7;
+            --forest-green: #065F46;
+            --emerald: #059669;
+            --mint: #A7F3D0;
+            
+            --glass-light: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--dark-green) 35%, var(--primary-green) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Static Green Background Pattern */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 95, 70, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 40% 80%, rgba(52, 211, 153, 0.2) 0%, transparent 40%),
+                linear-gradient(135deg, var(--forest-green) 0%, var(--dark-green) 35%, var(--primary-green) 100%);
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(110, 231, 183, 0.1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            background: linear-gradient(135deg, rgba(6, 95, 70, 0.3), rgba(16, 185, 129, 0.2));
+            animation-delay: -7s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 30%;
+            background: linear-gradient(225deg, rgba(52, 211, 153, 0.25), rgba(110, 231, 183, 0.2));
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Main Layout */
+        .app-container {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main analytics"
+                "sidebar main analytics";
+            grid-template-columns: 320px 1fr 300px;
+            grid-template-rows: auto 1fr;
+            min-height: 100vh;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            grid-area: header;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+
+        .logo-text h1 {
+            color: var(--text-primary);
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .logo-text p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .action-btn {
+            background: var(--glass-light);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--light-green), var(--accent-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest-green);
+            font-weight: 700;
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            grid-area: sidebar;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+
+        .sidebar-section h3 {
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .model-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .model-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .model-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .model-item.active {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.2));
+            border-color: var(--accent-green);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        }
+
+        .model-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .model-type {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .model-status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--light-green);
+        }
+
+        .add-model-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            border: none;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .add-model-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+            padding: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .tool-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .tool-btn.active {
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Info Panels */
+        .info-panel {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        .info-value {
+            color: var(--light-green);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .legend-btn {
+            width: 100%;
+            margin-top: 8px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: var(--text-primary);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .legend-btn:hover {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        /* Main Canvas */
+        .main-canvas {
+            grid-area: main;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .canvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .canvas-title {
+            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .canvas-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .canvas-btn {
+            background: var(--glass-light);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+
+        .canvas-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modeling-area {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Entity Components */
+        .entity {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            cursor: move;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .entity:hover {
+            transform: scale(1.02);
+        }
+
+        .entity.selected {
+            box-shadow: 0 0 0 3px var(--accent-green);
+        }
+
+        .entity-header {
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            color: white;
+            padding: 14px 18px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .entity-body {
+            padding: 16px 18px;
+        }
+
+        .entity-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .entity-field:last-child {
+            border-bottom: none;
+        }
+
+        .field-name {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .field-type {
+            color: #4a5568;
+            font-size: 12px;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .field-key {
+            color: var(--primary-green);
+            font-size: 10px;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        /* Connection Lines */
+        .connection {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .connection-label {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--forest-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        /* Analytics Panel */
+        .analytics {
+            grid-area: analytics;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .analytics-title {
+            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .metric-trend {
+            color: var(--light-green);
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Status Indicators */
+        .collaboration-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            z-index: 1000;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 320px;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+        }
+
+        .ai-assistant.active {
+            transform: translateY(0);
+        }
+
+        .ai-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .ai-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .ai-title {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .ai-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .ai-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .ai-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .suggestion-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-tag:hover {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        .ai-generate-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary-green), var(--emerald));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ai-generate-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .app-container {
+                grid-template-areas: 
+                    "header header"
+                    "sidebar main"
+                    "analytics analytics";
+                grid-template-columns: 320px 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main"
+                    "analytics";
+                grid-template-columns: 1fr;
+                padding: 12px;
+                gap: 12px;
+            }
+            
+            .header {
+                padding: 16px 20px;
+            }
+            
+            .header-actions {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .ai-assistant {
+                width: calc(100vw - 48px);
+                right: 24px;
+            }
+        }
+
+        /* Success animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .app-container > * {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Static Green Background -->
+    <div class="background-container">
+        <div class="grid-pattern"></div>
+        <div class="geometric-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Collaboration Indicator -->
+    <div class="collaboration-indicator">
+        <i class="fas fa-users"></i> 4 users collaborating
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">MF</div>
+                <div class="logo-text">
+                    <h1>ModelForge</h1>
+                    <p>Enterprise Data Modeling Platform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="action-btn">
+                    <i class="fas fa-database"></i> Data Curation
+                </button>
+                <button class="action-btn">
+                    <i class="fab fa-github"></i> FINOS Legend
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-download"></i> Export DSL
+                </button>
+                <button class="action-btn primary">
+                    <i class="fab fa-aws"></i> Deploy AWS
+                </button>
+                <div class="user-avatar">JS</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Models Section -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-database"></i> Data Models</h3>
+                <div class="model-list">
+                    <div class="model-item active">
+                        <div class="model-status"></div>
+                        <div class="model-name">Risk Management System</div>
+                        <div class="model-type">Quantitative Risk • 15 entities</div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-status" style="background: #fbbf24;"></div>
+                        <div class="model-name">Trading Platform Core</div>
+                        <div class="model-type">Trading Domain • 12 entities</div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-status" style="background: #f87171;"></div>
+                        <div class="model-name">Compliance Monitoring</div>
+                        <div class="model-type">Regulatory • 18 entities</div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-status"></div>
+                        <div class="model-name">Market Data Management</div>
+                        <div class="model-type">Market Data • 9 entities</div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-status"></div>
+                        <div class="model-name">Portfolio Analytics</div>
+                        <div class="model-type">Investment • 11 entities</div>
+                    </div>
+                </div>
+                <button class="add-model-btn">
+                    <i class="fas fa-plus"></i> Create New Model
+                </button>
+                
+                <!-- Quick Demo Button -->
+                <button class="add-model-btn" style="background: linear-gradient(45deg, #059669, #10B981); margin-top: 8px;" onclick="runQuickDemo()">
+                    <i class="fas fa-play"></i> Try Quick Demo
+                </button>
+            </div>
+
+            <!-- Tools Section -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-tools"></i> Modeling Tools</h3>
+                <div class="tools-grid">
+                    <button class="tool-btn active">
+                        <i class="fas fa-mouse-pointer"></i><br>Select
+                    </button>
+                    <button class="tool-btn">
+                        <i class="fas fa-cube"></i><br>Entity
+                    </button>
+                    <button class="tool-btn">
+                        <i class="fas fa-link"></i><br>Relation
+                    </button>
+                    <button class="tool-btn">
+                        <i class="fas fa-check-circle"></i><br>Validate
+                    </button>
+                </div>
+            </div>
+
+            <!-- FINOS Legend Integration -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-link"></i> FINOS Legend</h3>
+                <div class="info-panel">
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-check-circle"></i> Legend Compatible</span>
+                    </div>
+                    <div style="color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 8px;">
+                        Model exports to Legend DSL<br>
+                        Contributing to github.com/finos/legend
+                    </div>
+                    <button class="legend-btn">
+                        <i class="fas fa-external-link-alt"></i> View Legend Integration
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Quality -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-shield-alt"></i> Data Quality</h3>
+                <div class="info-panel">
+                    <div class="info-row">
+                        <span class="info-label">Traceability</span>
+                        <span class="info-value">✓ 100%</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Security</span>
+                        <span class="info-value">✓ Compliant</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Performance</span>
+                        <span class="info-value" style="color: #fbbf24;">⚡ 8.7ms</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Correctness</span>
+                        <span class="info-value">✓ 99.9%</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Canvas -->
+        <main class="main-canvas">
+            <div class="canvas-header">
+                <h2 class="canvas-title">Risk Management System</h2>
+                <div class="canvas-actions">
+                    <button class="canvas-btn">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button class="canvas-btn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="canvas-btn">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                </div>
+            </div>
+
+            <div class="modeling-area">
+                <!-- Position Entity -->
+                <div class="entity" style="top: 40px; left: 40px;">
+                    <div class="entity-header">
+                        <span>Position</span>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-field">
+                            <span class="field-name">positionId</span>
+                            <div>
+                                <span class="field-key">PK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">instrumentId</span>
+                            <div>
+                                <span class="field-key">FK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">quantity</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">marketValue</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">portfolioId</span>
+                            <div>
+                                <span class="field-key">FK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">lastUpdated</span>
+                            <span class="field-type">DateTime</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RiskMetric Entity -->
+                <div class="entity" style="top: 40px; right: 40px;">
+                    <div class="entity-header">
+                        <span>RiskMetric</span>
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-field">
+                            <span class="field-name">riskMetricId</span>
+                            <div>
+                                <span class="field-key">PK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">positionId</span>
+                            <div>
+                                <span class="field-key">FK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">var95</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">var99</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">expectedShortfall</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">calculationDate</span>
+                            <span class="field-type">Date</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- StressTest Entity -->
+                <div class="entity" style="bottom: 80px; left: 50%; transform: translateX(-50%);">
+                    <div class="entity-header">
+                        <span>StressTest</span>
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-field">
+                            <span class="field-name">stressTestId</span>
+                            <div>
+                                <span class="field-key">PK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">scenarioId</span>
+                            <div>
+                                <span class="field-key">FK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">positionId</span>
+                            <div>
+                                <span class="field-key">FK</span>
+                                <span class="field-type">UUID</span>
+                            </div>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">stressedValue</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">pnlImpact</span>
+                            <span class="field-type">BigDecimal</span>
+                        </div>
+                        <div class="entity-field">
+                            <span class="field-name">runDate</span>
+                            <span class="field-type">DateTime</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Lines -->
+                <div class="connection" style="top: 140px; left: 260px; width: 280px; transform: rotate(3deg);">
+                    <div class="connection-label">1:N Risk Calculation</div>
+                </div>
+                <div class="connection" style="top: 280px; left: 350px; width: 180px; transform: rotate(50deg);">
+                    <div class="connection-label">1:N Stress Testing</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Analytics Panel -->
+        <section class="analytics">
+            <h3 class="analytics-title">
+                <i class="fas fa-chart-bar"></i> Live Analytics
+            </h3>
+            <div class="analytics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">2.1TB</div>
+                    <div class="metric-label">Data Processed</div>
+                    <div class="metric-trend">↗ +18% efficiency</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">8.7ms</div>
+                    <div class="metric-label">Query Latency</div>
+                    <div class="metric-trend">↘ -15% optimized</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">48</div>
+                    <div class="metric-label">Data Models</div>
+                    <div class="metric-trend">↗ +5 this week</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">156</div>
+                    <div class="metric-label">Cloud Deployments</div>
+                    <div class="metric-trend">↗ +12% adoption</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.9%</div>
+                    <div class="metric-label">Data Quality</div>
+                    <div class="metric-trend">↗ +0.1% accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">23</div>
+                    <div class="metric-label">Contributors</div>
+                    <div class="metric-trend">↗ Open Source</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- AI Assistant -->
+    <button class="ai-toggle" onclick="toggleAI()">
+        <i class="fas fa-robot"></i>
+    </button>
+    
+    <div class="ai-assistant" id="aiAssistant">
+        <div class="ai-header">
+            <div class="ai-title">
+                <i class="fas fa-brain"></i> AI Model Assistant
+            </div>
+            <button onclick="toggleAI()" style="background: none; border: none; color: white; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <textarea class="ai-input" placeholder="Describe your quantitative model: 'Create a Risk Assessment model with Position, Trade, and RiskMetric entities'..." rows="3"></textarea>
+        <div class="ai-suggestions">
+            <button class="suggestion-tag">Risk Models</button>
+            <button class="suggestion-tag">Trading Systems</button>
+            <button class="suggestion-tag">Compliance</button>
+            <button class="suggestion-tag">Market Data</button>
+        </div>
+        <button class="ai-generate-btn">
+            <i class="fas fa-magic"></i> Generate Model
+        </button>
+    </div>
+
+    <script>
+        // Application State
+        let appState = {
+            isDragging: false,
+            currentEntity: null,
+            offset: { x: 0, y: 0 },
+            selectedTool: 'select',
+            activeModel: 'Risk Management System'
+        };
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDragAndDrop();
+            initializeModelManagement();
+            initializeToolSelection();
+            initializeAIAssistant();
+            initializeHeaderActions();
+            initializeCanvasActions();
+            startRealTimeUpdates();
+            showWelcomeTutorial();
+        });
+
+        // Welcome Tutorial
+        function showWelcomeTutorial() {
+            setTimeout(() => {
+                showNotification('👋 Welcome to ModelForge! Try these features:', 'info');
+                
+                setTimeout(() => {
+                    showNotification('1️⃣ Click "Create New Model" to add a new data model', 'info');
+                }, 2000);
+                
+                setTimeout(() => {
+                    showNotification('2️⃣ Select "Entity" tool and click on canvas to create entities', 'info');
+                }, 4000);
+                
+                setTimeout(() => {
+                    showNotification('3️⃣ Use "Relation" tool to connect entities together', 'info');
+                }, 6000);
+                
+                setTimeout(() => {
+                    showNotification('4️⃣ Switch to "Select" tool to drag entities around', 'info');
+                }, 8000);
+                
+                setTimeout(() => {
+                    showNotification('🚀 Click AI Assistant (robot icon) for smart model generation!', 'info');
+                }, 10000);
+            }, 1000);
+        }
+
+        // Drag and Drop System
+        function initializeDragAndDrop() {
+            // Re-attach drag handlers to all entities (including new ones)
+            document.querySelectorAll('.entity').forEach(entity => {
+                entity.removeEventListener('mousedown', startDrag); // Remove existing listeners
+                entity.removeEventListener('click', selectEntity);
+                entity.addEventListener('mousedown', startDrag);
+                entity.addEventListener('click', selectEntity);
+            });
+
+            function startDrag(e) {
+                if (appState.selectedTool !== 'select') return;
+                
+                appState.isDragging = true;
+                appState.currentEntity = e.currentTarget;
+                
+                const rect = e.currentTarget.getBoundingClientRect();
+                appState.offset.x = e.clientX - rect.left;
+                appState.offset.y = e.clientY - rect.top;
+                
+                e.currentTarget.style.zIndex = '1000';
+                e.currentTarget.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+
+            function handleDrag(e) {
+                if (!appState.isDragging || !appState.currentEntity) return;
+                
+                const container = document.querySelector('.modeling-area');
+                const containerRect = container.getBoundingClientRect();
+                
+                let x = e.clientX - containerRect.left - appState.offset.x;
+                let y = e.clientY - containerRect.top - appState.offset.y;
+                
+                // Boundary constraints
+                x = Math.max(0, Math.min(x, container.offsetWidth - appState.currentEntity.offsetWidth));
+                y = Math.max(0, Math.min(y, container.offsetHeight - appState.currentEntity.offsetHeight));
+                
+                appState.currentEntity.style.left = x + 'px';
+                appState.currentEntity.style.top = y + 'px';
+            }
+
+            function endDrag() {
+                if (appState.currentEntity) {
+                    appState.currentEntity.style.zIndex = '';
+                    appState.currentEntity.style.cursor = 'move';
+                }
+                appState.isDragging = false;
+                appState.currentEntity = null;
+            }
+
+            function selectEntity(e) {
+                if (appState.selectedTool === 'select') {
+                    document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
+                    e.currentTarget.classList.add('selected');
+                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
+                }
+            }
+
+            // Attach global mouse handlers
+            document.removeEventListener('mousemove', handleDrag);
+            document.removeEventListener('mouseup', endDrag);
+            document.addEventListener('mousemove', handleDrag);
+            document.addEventListener('mouseup', endDrag);
+        }
+
+        // Model Management
+        function initializeModelManagement() {
+            const modelItems = document.querySelectorAll('.model-item');
+            const addModelBtn = document.querySelector('.add-model-btn');
+            
+            modelItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    modelItems.forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const modelName = this.querySelector('.model-name').textContent;
+                    document.querySelector('.canvas-title').textContent = modelName;
+                    appState.activeModel = modelName;
+                    
+                    // Animation feedback
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => this.style.transform = '', 150);
+                });
+            });
+
+            addModelBtn.addEventListener('click', function() {
+                const name = prompt('Enter model name:');
+                if (name && name.trim()) {
+                    createNewModel(name.trim());
+                }
+            });
+        }
+
+        function createNewModel(name) {
+            const modelList = document.querySelector('.model-list');
+            const newModel = document.createElement('div');
+            newModel.className = 'model-item';
+            
+            // Determine entity count and type based on name
+            const entityCount = Math.floor(Math.random() * 8) + 3;
+            const domainTypes = ['Financial', 'Analytics', 'Trading', 'Risk', 'Custom'];
+            const randomDomain = domainTypes[Math.floor(Math.random() * domainTypes.length)];
+            
+            newModel.innerHTML = `
+                <div class="model-status"></div>
+                <div class="model-name">${name}</div>
+                <div class="model-type">${randomDomain} Domain • ${entityCount} entities</div>
+            `;
+            
+            modelList.appendChild(newModel);
+            
+            newModel.addEventListener('click', function() {
+                document.querySelectorAll('.model-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelector('.canvas-title').textContent = name;
+                appState.activeModel = name;
+                
+                // Clear the canvas and show loading
+                clearCanvas();
+                showModelLoadingAnimation(name);
+            });
+            
+            // Auto-select new model with animation
+            newModel.style.opacity = '0';
+            newModel.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                newModel.style.transition = 'all 0.5s ease';
+                newModel.style.opacity = '1';
+                newModel.style.transform = 'translateY(0)';
+                newModel.click(); // Auto-select
+            }, 100);
+            
+            showNotification(`✅ Model "${name}" created with ${entityCount} entities! Click to view.`);
+        }
+
+        function clearCanvas() {
+            const modelingArea = document.querySelector('.modeling-area');
+            // Remove all entities and connections, but keep the area itself
+            const entities = modelingArea.querySelectorAll('.entity');
+            const connections = modelingArea.querySelectorAll('.connection');
+            
+            entities.forEach(entity => entity.remove());
+            connections.forEach(connection => connection.remove());
+        }
+
+        function showModelLoadingAnimation(modelName) {
+            const modelingArea = document.querySelector('.modeling-area');
+            
+            // Add loading indicator
+            const loader = document.createElement('div');
+            loader.className = 'model-loader';
+            loader.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.9);
+                padding: 30px;
+                border-radius: 16px;
+                text-align: center;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            `;
+            
+            loader.innerHTML = `
+                <div style="color: #10B981; font-size: 32px; margin-bottom: 16px;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div style="color: #374151; font-weight: 600; margin-bottom: 8px;">
+                    Loading ${modelName}
+                </div>
+                <div style="color: #6B7280; font-size: 14px;">
+                    Generating entities and relationships...
+                </div>
+            `;
+            
+            modelingArea.appendChild(loader);
+            
+            // Remove loader and show demo entities after 2 seconds
+            setTimeout(() => {
+                loader.remove();
+                generateDemoEntities(modelName);
+            }, 2000);
+        }
+
+        function generateDemoEntities(modelName) {
+            const modelingArea = document.querySelector('.modeling-area');
+            
+            // Different entity sets based on model type
+            const modelTemplates = {
+                'Risk': [
+                    { name: 'Position', icon: 'fas fa-chart-line', x: 50, y: 50 },
+                    { name: 'RiskMetric', icon: 'fas fa-exclamation-triangle', x: 400, y: 50 },
+                    { name: 'StressTest', icon: 'fas fa-heartbeat', x: 225, y: 250 }
+                ],
+                'Trading': [
+                    { name: 'Order', icon: 'fas fa-shopping-cart', x: 50, y: 50 },
+                    { name: 'Trade', icon: 'fas fa-handshake', x: 400, y: 50 },
+                    { name: 'Portfolio', icon: 'fas fa-briefcase', x: 225, y: 250 }
+                ],
+                'Default': [
+                    { name: 'Entity1', icon: 'fas fa-cube', x: 50, y: 50 },
+                    { name: 'Entity2', icon: 'fas fa-database', x: 400, y: 50 },
+                    { name: 'Entity3', icon: 'fas fa-cog', x: 225, y: 250 }
+                ]
+            };
+            
+            const template = modelTemplates[Object.keys(modelTemplates).find(key => modelName.includes(key))] || modelTemplates.Default;
+            
+            template.forEach((entityDef, index) => {
+                setTimeout(() => {
+                    createDemoEntity(entityDef.name, entityDef.icon, entityDef.x, entityDef.y, modelingArea);
+                }, index * 500);
+            });
+            
+            showNotification(`🎯 ${modelName} loaded! Try the modeling tools: Entity, Relation, Validate`);
+        }
+
+        function createDemoEntity(name, icon, x, y, container) {
+            const fields = [
+                `${name.toLowerCase()}Id:UUID:PK`,
+                'name:String',
+                'value:BigDecimal',
+                'createdAt:DateTime'
+            ];
+            
+            const entity = document.createElement('div');
+            entity.className = 'entity';
+            entity.style.left = x + 'px';
+            entity.style.top = y + 'px';
+            entity.style.transform = 'scale(0)';
+            entity.style.transition = 'transform 0.5s ease';
+            
+            entity.innerHTML = `
+                <div class="entity-header">
+                    <span>${name}</span>
+                    <i class="${icon}"></i>
+                </div>
+                <div class="entity-body">
+                    ${fields.map(field => {
+                        const [fieldName, type, key] = field.split(':');
+                        return `
+                            <div class="entity-field">
+                                <span class="field-name">${fieldName}</span>
+                                <div>
+                                    ${key ? `<span class="field-key">${key}</span>` : ''}
+                                    <span class="field-type">${type}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            
+            container.appendChild(entity);
+            
+            // Animate in
+            setTimeout(() => {
+                entity.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Add interactivity
+            entity.addEventListener('mousedown', function(e) {
+                if (appState.selectedTool !== 'select') return;
+                
+                appState.isDragging = true;
+                appState.currentEntity = e.currentTarget;
+                
+                const rect = e.currentTarget.getBoundingClientRect();
+                appState.offset.x = e.clientX - rect.left;
+                appState.offset.y = e.clientY - rect.top;
+                
+                e.currentTarget.style.zIndex = '1000';
+                e.currentTarget.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
+            
+            entity.addEventListener('click', function(e) {
+                if (appState.selectedTool === 'select') {
+                    document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
+                    e.currentTarget.classList.add('selected');
+                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
+                }
+            });
+        }
+
+        // Tool Selection
+        function initializeToolSelection() {
+            const toolBtns = document.querySelectorAll('.tool-btn');
+            const modelingArea = document.querySelector('.modeling-area');
+            
+            toolBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    toolBtns.forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const toolName = this.textContent.trim().toLowerCase();
+                    appState.selectedTool = toolName;
+                    
+                    // Clear any existing click handlers
+                    modelingArea.replaceWith(modelingArea.cloneNode(true));
+                    const newModelingArea = document.querySelector('.modeling-area');
+                    
+                    // Update cursor and add functionality based on tool
+                    switch(toolName) {
+                        case 'select':
+                            newModelingArea.style.cursor = 'default';
+                            showNotification('🖱️ Select Tool Active - Click and drag entities to move them');
+                            initializeDragAndDrop(); // Re-initialize drag and drop
+                            break;
+                        case 'entity':
+                            newModelingArea.style.cursor = 'crosshair';
+                            showNotification('📦 Entity Tool Active - Click anywhere on canvas to create a new entity');
+                            addEntityCreationMode(newModelingArea);
+                            break;
+                        case 'relation':
+                            newModelingArea.style.cursor = 'pointer';
+                            showNotification('🔗 Relation Tool Active - Click on entities to connect them');
+                            addRelationMode(newModelingArea);
+                            break;
+                        case 'validate':
+                            newModelingArea.style.cursor = 'help';
+                            validateModel();
+                            break;
+                    }
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => this.style.transform = '', 150);
+                });
+            });
+        }
+
+        // Add Entity Creation Mode
+        function addEntityCreationMode(area) {
+            area.addEventListener('click', function(e) {
+                if (appState.selectedTool !== 'entity') return;
+                
+                const rect = area.getBoundingClientRect();
+                const x = e.clientX - rect.left - 110; // Center the entity
+                const y = e.clientY - rect.top - 100;
+                
+                // Ensure entity stays within bounds
+                const safeX = Math.max(10, Math.min(x, area.offsetWidth - 230));
+                const safeY = Math.max(10, Math.min(y, area.offsetHeight - 200));
+                
+                createNewEntity(safeX, safeY, area);
+            });
+        }
+
+        // Create New Entity
+        function createNewEntity(x, y, container) {
+            const entityTypes = [
+                { name: 'Customer', icon: 'fas fa-user', fields: ['customerId:UUID:PK', 'firstName:String', 'lastName:String', 'email:String'] },
+                { name: 'Order', icon: 'fas fa-shopping-cart', fields: ['orderId:UUID:PK', 'customerId:UUID:FK', 'amount:BigDecimal', 'status:Enum'] },
+                { name: 'Product', icon: 'fas fa-box', fields: ['productId:UUID:PK', 'name:String', 'price:BigDecimal', 'category:String'] },
+                { name: 'Transaction', icon: 'fas fa-exchange-alt', fields: ['transactionId:UUID:PK', 'amount:BigDecimal', 'timestamp:DateTime', 'type:Enum'] },
+                { name: 'Risk', icon: 'fas fa-exclamation-triangle', fields: ['riskId:UUID:PK', 'value:BigDecimal', 'type:Enum', 'calculationDate:Date'] }
+            ];
+            
+            const randomEntity = entityTypes[Math.floor(Math.random() * entityTypes.length)];
+            const entityId = 'entity_' + Date.now();
+            
+            const entity = document.createElement('div');
+            entity.className = 'entity';
+            entity.id = entityId;
+            entity.style.left = x + 'px';
+            entity.style.top = y + 'px';
+            entity.style.zIndex = '100';
+            
+            entity.innerHTML = `
+                <div class="entity-header">
+                    <span>${randomEntity.name}</span>
+                    <i class="${randomEntity.icon}"></i>
+                </div>
+                <div class="entity-body">
+                    ${randomEntity.fields.map(field => {
+                        const [name, type, key] = field.split(':');
+                        return `
+                            <div class="entity-field">
+                                <span class="field-name">${name}</span>
+                                <div>
+                                    ${key ? `<span class="field-key">${key}</span>` : ''}
+                                    <span class="field-type">${type}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            
+            container.appendChild(entity);
+            
+            // Add drag functionality to new entity
+            entity.addEventListener('mousedown', function(e) {
+                if (appState.selectedTool !== 'select') return;
+                
+                appState.isDragging = true;
+                appState.currentEntity = e.currentTarget;
+                
+                const rect = e.currentTarget.getBoundingClientRect();
+                appState.offset.x = e.clientX - rect.left;
+                appState.offset.y = e.clientY - rect.top;
+                
+                e.currentTarget.style.zIndex = '1000';
+                e.currentTarget.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
+            
+            entity.addEventListener('click', function(e) {
+                if (appState.selectedTool === 'select') {
+                    document.querySelectorAll('.entity').forEach(el => el.classList.remove('selected'));
+                    e.currentTarget.classList.add('selected');
+                    showNotification(`📋 Selected: ${e.currentTarget.querySelector('.entity-header span').textContent}`);
+                }
+            });
+            
+            // Animate in
+            entity.style.transform = 'scale(0)';
+            setTimeout(() => {
+                entity.style.transform = 'scale(1)';
+                entity.style.transition = 'transform 0.3s ease';
+            }, 10);
+            
+            showNotification(`✅ Created new ${randomEntity.name} entity! Click Select tool to move it.`);
+        }
+
+        // Add Relation Mode
+        function addRelationMode(area) {
+            let firstEntity = null;
+            
+            // Add click handlers to existing entities
+            document.querySelectorAll('.entity').forEach(entity => {
+                entity.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (appState.selectedTool !== 'relation') return;
+                    
+                    if (!firstEntity) {
+                        firstEntity = this;
+                        this.style.boxShadow = '0 0 0 3px #fbbf24';
+                        showNotification('🔗 First entity selected. Click another entity to create relationship.');
+                    } else if (firstEntity !== this) {
+                        createRelationship(firstEntity, this, area);
+                        firstEntity.style.boxShadow = '';
+                        firstEntity = null;
+                    }
+                });
+            });
+        }
+
+        // Create Relationship
+        function createRelationship(entity1, entity2, container) {
+            const rect1 = entity1.getBoundingClientRect();
+            const rect2 = entity2.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const x1 = rect1.left - containerRect.left + rect1.width / 2;
+            const y1 = rect1.top - containerRect.top + rect1.height / 2;
+            const x2 = rect2.left - containerRect.left + rect2.width / 2;
+            const y2 = rect2.top - containerRect.top + rect2.height / 2;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.style.left = x1 + 'px';
+            connection.style.top = y1 + 'px';
+            connection.style.width = length + 'px';
+            connection.style.transform = `rotate(${angle}deg)`;
+            connection.style.transformOrigin = '0 50%';
+            
+            const label = document.createElement('div');
+            label.className = 'connection-label';
+            label.textContent = '1:N Relationship';
+            connection.appendChild(label);
+            
+            container.appendChild(connection);
+            
+            showNotification('✅ Relationship created! Connection line added between entities.');
+        }
+
+        // Header Actions
+        function initializeHeaderActions() {
+            const actionBtns = document.querySelectorAll('.action-btn');
+            
+            actionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.textContent.trim();
+                    
+                    switch(action) {
+                        case 'Data Curation':
+                            showDataCurationDashboard();
+                            break;
+                        case 'FINOS Legend':
+                            showLegendIntegration();
+                            break;
+                        case 'Export DSL':
+                            exportToLegendDSL();
+                            break;
+                        case 'Deploy AWS':
+                            deployToAWS();
+                            break;
+                    }
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => this.style.transform = '', 150);
+                });
+            });
+        }
+
+        function showDataCurationDashboard() {
+            showNotification('📊 Data Curation: Traceability ✓ Security ✓ Performance 8.7ms ✓ Correctness 99.9%');
+        }
+
+        function showLegendIntegration() {
+            showNotification('🏛 FINOS Legend: Connected to github.com/finos/legend • Contributing to open source');
+        }
+
+        function exportToLegendDSL() {
+            showNotification('📝 Exporting to Legend DSL...', 'info');
+            
+            setTimeout(() => {
+                showNotification('✅ Legend DSL exported! Compatible with legend.finos.org');
+            }, 1500);
+        }
+
+        function deployToAWS() {
+            showNotification('🚀 Deploying to AWS...', 'info');
+            
+            const steps = [
+                '🔄 Building Docker container...',
+                '🔄 Pushing to ECR...',
+                '🔄 Creating Lambda functions...',
+                '🔄 Setting up API Gateway...',
+                '🔄 Configuring RDS instances...',
+                '✅ Deployment complete! Live at https://api.modelforge.com/risk-management'
+            ];
+            
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    showNotification(step, index < steps.length - 1 ? 'info' : 'success');
+                }, (index + 1) * 1000);
+            });
+        }
+
+        // Canvas Actions
+        function initializeCanvasActions() {
+            document.querySelectorAll('.canvas-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.textContent.trim();
+                    
+                    switch(action) {
+                        case 'Save':
+                            showNotification('💾 Model saved successfully!');
+                            break;
+                        case 'Share':
+                            showNotification('🔗 Share link copied to clipboard!');
+                            break;
+                        case 'Preview':
+                            showNotification('👁 Opening preview mode...');
+                            break;
+                    }
+                    
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => this.style.transform = '', 150);
+                });
+            });
+        }
+
+        // AI Assistant
+        window.toggleAI = function() {
+            const assistant = document.getElementById('aiAssistant');
+            const toggle = document.querySelector('.ai-toggle');
+            
+            assistant.classList.toggle('active');
+            toggle.style.transform = assistant.classList.contains('active') ? 'rotate(45deg)' : '';
+        }
+
+        function initializeAIAssistant() {
+            const suggestionTags = document.querySelectorAll('.suggestion-tag');
+            const generateBtn = document.querySelector('.ai-generate-btn');
+            const aiInput = document.querySelector('.ai-input');
+            
+            const suggestions = {
+                'Risk Models': 'Create a comprehensive risk assessment system with Position, Trade, RiskMetric, VaR, and StressTest entities',
+                'Trading Systems': 'Build a trading platform with Order, Trade, Instrument, Portfolio, and PnL entities',
+                'Compliance': 'Design compliance monitoring with Transaction, Rule, Alert, Investigation, and Report entities',
+                'Market Data': 'Create market data system with Instrument, Price, Quote, MarketDataSource, and TimeSeries entities'
+            };
+            
+            suggestionTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    aiInput.value = suggestions[this.textContent] || this.textContent;
+                    aiInput.focus();
+                    
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => this.style.transform = '', 150);
+                });
+            });
+            
+            generateBtn.addEventListener('click', function() {
+                if (aiInput.value.trim()) {
+                    generateModel(aiInput.value.trim());
+                    aiInput.value = '';
+                    toggleAI();
+                }
+            });
+        }
+
+        function generateModel(description) {
+            showNotification('🤖 AI is generating your model...', 'info');
+            
+            setTimeout(() => {
+                showNotification(`✅ AI Model Generated! "${description}" has been processed and added to workspace.`);
+            }, 2000);
+        }
+
+        function validateModel() {
+            showNotification('🔍 Running comprehensive model validation...', 'info');
+            
+            const entities = document.querySelectorAll('.entity');
+            const connections = document.querySelectorAll('.connection');
+            
+            // Show validation progress
+            setTimeout(() => {
+                showNotification('🔄 Checking entity relationships...', 'info');
+            }, 1000);
+            
+            setTimeout(() => {
+                showNotification('🔄 Validating field types and constraints...', 'info');
+            }, 2000);
+            
+            setTimeout(() => {
+                showNotification('🔄 Analyzing data flow patterns...', 'info');
+            }, 3000);
+            
+            setTimeout(() => {
+                const issues = Math.floor(Math.random() * 4);
+                const warnings = Math.floor(Math.random() * 3);
+                
+                if (issues === 0 && warnings === 0) {
+                    showNotification(`✅ Validation Complete! Model is perfect with ${entities.length} entities and ${connections.length} relationships.`);
+                } else if (issues === 0) {
+                    showNotification(`⚠️ Validation Complete! Found ${warnings} warnings but no critical issues. Model is deployable.`, 'warning');
+                } else {
+                    showNotification(`❌ Validation Complete! Found ${issues} critical issues and ${warnings} warnings. Review required.`, 'warning');
+                }
+                
+                // Highlight a random entity as if it has an issue
+                if (issues > 0 && entities.length > 0) {
+                    const randomEntity = entities[Math.floor(Math.random() * entities.length)];
+                    randomEntity.style.border = '2px solid #f87171';
+                    setTimeout(() => {
+                        randomEntity.style.border = '';
+                    }, 3000);
+                }
+            }, 4000);
+        }
+
+        // Real-time Updates
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                const metrics = document.querySelectorAll('.metric-value');
+                if (metrics.length >= 6) {
+                    metrics[2].textContent = Math.floor(Math.random() * 5) + 46; // Models
+                    metrics[3].textContent = Math.floor(Math.random() * 10) + 150; // Deployments
+                }
+                
+                // Update collaboration count
+                const collab = document.querySelector('.collaboration-indicator');
+                const userCount = Math.floor(Math.random() * 3) + 3;
+                collab.innerHTML = `<i class="fas fa-users"></i> ${userCount} users collaborating`;
+            }, 5000);
+            
+            // Initialize Legend button
+            document.querySelector('.legend-btn').addEventListener('click', function() {
+                showNotification('🏛 Opening FINOS Legend integration panel...');
+            });
+        }
+
+        // Quick Demo Function
+        window.runQuickDemo = function() {
+            showNotification('🎬 Starting Quick Demo - Watch all features in action!', 'info');
+            
+            // Step 1: Create a demo model
+            setTimeout(() => {
+                showNotification('📝 Creating "Demo Model"...', 'info');
+                createNewModel('Demo E-Commerce System');
+            }, 1000);
+            
+            // Step 2: Switch to Entity tool
+            setTimeout(() => {
+                showNotification('🔧 Selecting Entity tool...', 'info');
+                document.querySelectorAll('.tool-btn')[1].click(); // Entity tool
+            }, 3000);
+            
+            // Step 3: Create an entity automatically
+            setTimeout(() => {
+                showNotification('📦 Creating new entity automatically...', 'info');
+                const area = document.querySelector('.modeling-area');
+                createNewEntity(100, 150, area);
+            }, 5000);
+            
+            // Step 4: Switch to Relation tool
+            setTimeout(() => {
+                showNotification('🔗 Switching to Relation tool...', 'info');
+                document.querySelectorAll('.tool-btn')[2].click(); // Relation tool
+            }, 7000);
+            
+            // Step 5: Create relationship
+            setTimeout(() => {
+                showNotification('🔗 Creating relationship between entities...', 'info');
+                const entities = document.querySelectorAll('.entity');
+                if (entities.length >= 2) {
+                    createRelationship(entities[0], entities[1], document.querySelector('.modeling-area'));
+                }
+            }, 9000);
+            
+            // Step 6: Switch to Select tool
+            setTimeout(() => {
+                showNotification('🖱️ Switching to Select tool for dragging...', 'info');
+                document.querySelectorAll('.tool-btn')[0].click(); // Select tool
+            }, 11000);
+            
+            // Step 7: Demonstrate drag
+            setTimeout(() => {
+                showNotification('🎯 Try dragging the entities around now!', 'info');
+                const firstEntity = document.querySelector('.entity');
+                if (firstEntity) {
+                    firstEntity.style.boxShadow = '0 0 0 3px #10B981';
+                    setTimeout(() => {
+                        firstEntity.style.boxShadow = '';
+                    }, 2000);
+                }
+            }, 13000);
+            
+            // Step 8: Run validation
+            setTimeout(() => {
+                showNotification('✅ Running model validation...', 'info');
+                document.querySelectorAll('.tool-btn')[3].click(); // Validate tool
+            }, 15000);
+            
+            // Step 9: Final message
+            setTimeout(() => {
+                showNotification('🎉 Demo complete! Now try creating your own models and entities.', 'success');
+            }, 20000);
+        }
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 24px;
+                background: ${type === 'success' ? 'rgba(16, 185, 129, 0.95)' : 
+                           type === 'warning' ? 'rgba(251, 191, 36, 0.95)' : 
+                           'rgba(59, 130, 246, 0.95)'};
+                color: white;
+                padding: 16px 20px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+                z-index: 2000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 350px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after delay
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
